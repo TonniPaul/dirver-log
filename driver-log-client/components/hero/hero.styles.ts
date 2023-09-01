@@ -45,9 +45,17 @@ export const HeroDescriptionContainer = styled.div`
 export const HeroImageContainer = styled.div`
    position: relative;
    width: 100%;
-   height: ${getRemValue(500)};
+
+   @media screen and (max-width: 56.25em) {
+      aspect-ratio: 1;
+   }
+
+   @media screen and (min-width: 56.25em) {
+      height: ${getRemValue(500)};
+   }
 
    & > img {
       object-fit: contain;
+      z-index: -1;
    }
 `
