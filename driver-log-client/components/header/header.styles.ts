@@ -11,6 +11,7 @@ export const HeaderWrapper = styled.header`
    & > nav {
       padding: 1rem;
       max-width: var(--max-width);
+      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -25,7 +26,6 @@ export const HeaderWrapper = styled.header`
 
 export const NavLinksContainer = styled.div<{ active?: boolean }>`
   
-   
    @media screen and (max-width: 56.25em) {
       position: fixed;
       width: 85vw;
