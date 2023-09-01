@@ -6,12 +6,11 @@ const GlobalStyles = createGlobalStyle`
   :root {
     --box-shadow: 0px 3px 6px #d6d6d6;
     --max-width : ${getRemValue(1400)};
+    --padding-lg: 4rem 2rem;
+    --padding-sm: 2rem 1rem;
     --color-black: 0, 0, 0;
-    --color-primary: 84, 109, 211;
-    --color-orange: 255, 171, 3;
+    --color-primary: 244, 101, 36;
     --color-white: 255, 255, 255;
-    --color-secondary-p: 255, 244, 229;
-    --color-secondary-r: 249, 5, 5;
 }
 
 *, *::after, *::before {
