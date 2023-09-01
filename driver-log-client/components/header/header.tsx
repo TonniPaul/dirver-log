@@ -1,4 +1,3 @@
-import { FlexContainer } from "@/styles/glabal.styles";
 import LinkButton from "../button/link-button";
 import Logo from "../logo/logo";
 import { HeaderWrapper, MenuIcon, NavItems, NavLinkButton, NavLinksContainer } from "./header.styles";
@@ -21,14 +20,14 @@ const Header = () => {
                <NavItems>
                   <li><Link href='#'>Features</Link></li>
                   <li><Link href='#'>About</Link></li>
-                  <li><Link href='#'>Contact</Link></li>
+                  <li><Link href='/contact'>Contact</Link></li>
                </NavItems>
                <NavLinkButton>
-                  <LinkButton href="/" isBlock>
+                  <LinkButton href="/log-in" isBlock>
                      Sign In
                   </LinkButton>
 
-                  <LinkButton href="/" primary isBlock>
+                  <LinkButton href="/sign-up" primary isBlock>
                      Sign Up
                   </LinkButton>
                </NavLinkButton>
