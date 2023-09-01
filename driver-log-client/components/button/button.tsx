@@ -5,10 +5,10 @@ export interface IButtonProp extends IBtnStyleSProps {
    children: ReactNode;
 }
 
-const Button = ({ primary, children, }: IButtonProp) => {
+const Button = ({ primary, children, isBlock }: IButtonProp) => {
 
    return (
-      <BtnStyle primary={primary}>
+      <BtnStyle primary={primary} isBlock={isBlock}>
          {children}
       </BtnStyle>
    );

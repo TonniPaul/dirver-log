@@ -32,7 +32,8 @@ export const BtnStyle = styled.button <IBtnStyleSProps>`
   ${({ isBlock }) =>
     isBlock &&
     `
-    display: block;
+    width: 100%;
+    text-align: center;
   `}
 `;
 
@@ -61,6 +62,7 @@ export const LinkBtn = styled(Link) <IBtnStyleSProps>`
    ${({ isBlock }) =>
     isBlock &&
     `
-    display: block;
+    width: 100%;
+    text-align: center;
   `}
 `;
