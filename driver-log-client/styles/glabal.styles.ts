@@ -14,7 +14,7 @@ export const FlexContainer = styled.div<IFlexContainerProps>`
 
   ${({ gapLG }) =>
     gapLG && `
-  gap: 1ren;
+  gap: 1rem;
   `
   }
 
