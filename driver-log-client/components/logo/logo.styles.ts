@@ -5,6 +5,7 @@ import styled from 'styled-components';
 export const LogoContainer = styled(Link)`
    display: flex;
    align-items: center;
+   z-index: 10;
 
    & > svg {
       fill: currentColor;
