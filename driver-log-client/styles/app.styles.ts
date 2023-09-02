@@ -10,6 +10,7 @@ const GlobalStyles = createGlobalStyle`
     --padding-sm: 2rem 1rem;
     --color-black: 0, 0, 0;
     --color-primary: 244, 101, 36;
+    --color-secondary-b: 56, 57, 93;
     --color-white: 255, 255, 255;
 }
 
