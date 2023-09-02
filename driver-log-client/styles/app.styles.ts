@@ -7,7 +7,7 @@ const GlobalStyles = createGlobalStyle`
     --box-shadow: 0px 3px 6px #d6d6d6;
     --max-width : ${getRemValue(1400)};
     --padding-lg: 4rem 2rem;
-    --padding-sm: 2rem 1rem;
+    --padding-sm: 3rem 1rem;
     --color-black: 0, 0, 0;
     --color-primary: 244, 101, 36;
     --color-secondary-b: 56, 57, 93;
