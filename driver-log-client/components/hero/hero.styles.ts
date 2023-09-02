@@ -31,6 +31,15 @@ export const HeroDescriptionContainer = styled.div`
       font-weight: 600;
       font-style: italic;
    }
+
+   & > a {
+      max-width: ${getRemValue(200)};
+      margin-top: 3rem;
+      
+      @media screen and (max-width: 56.25em) {
+         margin: 2rem auto;
+      }
+   }
    
    @media screen and (min-width: 56.25em) {
       padding-right: 2rem;
