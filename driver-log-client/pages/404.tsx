@@ -17,7 +17,7 @@ const Error404Page: NextPageWithLayout = () => {
             </p>
 
             <ErrorPageLinksContainer>
-               <LinkButton href={'/contact'}>Contact Support</LinkButton>
+               <LinkButton href={'/contact'}>Contact Us</LinkButton>
                <LinkButton href={'/'} primary>Go Home</LinkButton>
             </ErrorPageLinksContainer>
          </div>
