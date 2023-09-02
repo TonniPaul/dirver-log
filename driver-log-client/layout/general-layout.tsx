@@ -1,3 +1,4 @@
+import Footer from '@/components/footer/footer';
 import Header from '@/components/header/header';
 import { montserrat } from '@/helpers/fonts';
 import Head from 'next/head';
@@ -24,7 +25,7 @@ const GeneralLayout = ({
          </Head>
          <Header />
          <main className={montserrat.className}>{children}</main>
-         Footer
+         <Footer />
       </>
    );
 };
