@@ -3,8 +3,6 @@ import { ErrorPageBoldText, ErrorPageContainer, ErrorPageImageContainer, ErrorPa
 import Image from 'next/image';
 import LinkButton from '@/components/button/link-button';
 import GeneralLayout from '@/layout/general-layout';
-import { mr_Dafoe } from '@/helpers/fonts';
-
 
 
 const Error404Page: NextPageWithLayout = () => {
