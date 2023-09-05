@@ -7,6 +7,7 @@ export const HeaderWrapper = styled.header`
    color: rgb(var(--color-primary));
    box-shadow: var(--box-shadow);
    position: sticky;
+   
 
    & > nav {
       padding: 1rem;
@@ -25,21 +26,23 @@ export const HeaderWrapper = styled.header`
 `;
 
 export const NavLinksContainer = styled.div<{ active?: boolean }>`
-  
+   
    @media screen and (max-width: 56.25em) {
       position: fixed;
-      width: 85vw;
+      width: 93vw;
       height: 100vh;
       background: rgb(var(--color-white));
       transition: right 0.2s ease-in-out;
       top: 0;
       right: -100%;
       padding: 4rem;
+      z-index: 9;
 
       ${({ active }) =>
       active && `
       right: 0;
-      z-index: 9;
+      box-shadow: -2px 85px 6px #d6d6d6;
+     
    `
    }
       & > * {
@@ -112,7 +115,7 @@ export const MenuIcon = styled(SvgIcon) <{ isClose?: boolean }>`
       padding: ${getRemValue(13)};
       position: absolute;
       top: 1rem;
-      right: 2rem;
+      right: 1rem;
    `
    }
 

@@ -31,6 +31,15 @@ export const HeroDescriptionContainer = styled.div`
       font-weight: 600;
       font-style: italic;
    }
+
+   & > a {
+      max-width: ${getRemValue(200)};
+      margin-top: 3rem;
+      
+      @media screen and (max-width: 56.25em) {
+         margin: 2rem auto;
+      }
+   }
    
    @media screen and (min-width: 56.25em) {
       padding-right: 2rem;
@@ -45,9 +54,17 @@ export const HeroDescriptionContainer = styled.div`
 export const HeroImageContainer = styled.div`
    position: relative;
    width: 100%;
-   height: ${getRemValue(500)};
+
+   @media screen and (max-width: 56.25em) {
+      aspect-ratio: 1;
+   }
+
+   @media screen and (min-width: 56.25em) {
+      height: ${getRemValue(500)};
+   }
 
    & > img {
       object-fit: contain;
+      z-index: -1;
    }
 `
