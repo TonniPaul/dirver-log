@@ -15,22 +15,11 @@ const DriverSchema = new mongoose.Schema({
 	},
 	nationalId: {
 		type: String,
-		required: true,
-		match: [
-			/^\d{6}\/\d{2}\/\d{1}$/,
-			'National ID should be of the format 123456/12/1',
-		],
+		required: true
 	},
 	contactNumber: {
 		type: Number,
-		required: true,
-		validate: {
-			validator: function (value) {
-				// Convert the number to a string and match exactly 10 digits
-				return /^\d{10}$/.test(value.toString());
-			},
-			message: 'Contact number must be exactly 10 digits.',
-		},
+		required: true
 	},	
 	email: {
 		type: String,
