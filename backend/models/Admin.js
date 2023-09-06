@@ -2,7 +2,11 @@
 const mongoose = require('mongoose');
 
 const AdminSchema = new mongoose.Schema({
-  email: {
+  companyName: {
+    type: String,
+    required: true,
+  },
+  companyEmail: {
 		type: String,
 		required: false,
 		match: [
@@ -10,9 +14,19 @@ const AdminSchema = new mongoose.Schema({
 			'Email should be of the format johndoe@gmail.com',
 		  ],
 	},
+  companyContactNo: {
+    type: String,
+    required: true,
+  },
   password: {
     type: String,
     required: true,
+  },
+  companyRegNo: {
+    type: String,
+  },
+  companyAddress: {
+    type: String,
   },
   role: {
     type: String,
