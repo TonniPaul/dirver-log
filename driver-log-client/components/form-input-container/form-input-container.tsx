@@ -1,5 +1,5 @@
 import { FC, InputHTMLAttributes, useState } from 'react';
-import { useController, UseControllerProps } from "react-hook-form"
+import { useController, UseControllerProps, ControllerProps } from "react-hook-form"
 import { InputFlexContainer, InputFooterText, TogglePasswordBtn, InputFormField } from "./form-input-container.styles";
 import SvgIcon from "../svg-icon/svg-icon";
 
@@ -7,7 +7,7 @@ interface IFormInputProps extends InputHTMLAttributes<HTMLInputElement> {
    htmlFor: string;
    label: string;
    isPasswordType?: boolean;
-   controller: UseControllerProps<any>
+   controller: UseControllerProps<ControllerProps>
 }
 
 const FormInputContainer: FC<IFormInputProps> = ({
