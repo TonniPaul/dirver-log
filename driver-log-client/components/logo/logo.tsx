@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { LogoContainer } from "./logo.styles";
 import SvgIcon from "../svg-icon/svg-icon";
 
