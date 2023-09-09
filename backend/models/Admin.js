@@ -14,15 +14,14 @@ const AdminSchema = new mongoose.Schema({
 			'Email should be of the format johndoe@gmail.com',
 		  ],
 	},
-  companyContactNo: {
-    type: String,
-    required: true,
-  },
   password: {
     type: String,
     required: true,
   },
   companyRegNo: {
+    type: String,
+  },
+  companyContactNo: {
     type: String,
   },
   companyAddress: {
