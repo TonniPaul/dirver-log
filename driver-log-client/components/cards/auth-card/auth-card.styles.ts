@@ -28,35 +28,13 @@ export const AuthCardContainer = styled.div<IAuthCardStyleProps>`
    
    ${({ isAdmin }) =>
       isAdmin && `
-         background-color: rgb(var(--color-secondary-b));
-         color: rgb(var(--color-white));
+         border-color: rgb(var(--color-secondary-b));
       `
    }
 
    ${({ isLoginPage }) =>
       isLoginPage && `
          border-radius: ${getRemValue(20)};
-      `
-   }
-
-   & > button {
-      background: none;
-      color: rgb(var(--color-black));
-      border: 1px solid rgb(var(--color-primary), 0.7);
-
-      & > svg {
-         fill: rgb(var(--color-primary));
-      }
-
-        ${({ isAdmin }) =>
-      isAdmin && `
-         background: none !important;
-         color: rgb(var(--color-white));
-         border: 1px solid rgb(var(--color-white));
-
-         & > svg {
-         fill: currentColor;
-      }
       `
    }
    }
@@ -93,8 +71,8 @@ export const AuthButton = styled.button<IAuthCardStyleProps>`
 
     ${({ isAdmin }) =>
       isAdmin && `
-         background-color: rgb(var(--color-white));
-         color: rgb(var(--color-black));
+         background-color: rgb(var(--color-secondary-b));
+         color: rgb(var(--color-white));
       `
    }
 `;
