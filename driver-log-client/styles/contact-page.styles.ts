@@ -85,6 +85,7 @@ export const ContactFlexContainer = styled.div<{
 export const ContactForm = styled.form`
    flex-basis: 45%;
    max-width: ${getRemValue(500)};
+   margin: 0 auto;
    padding: 2rem;
    border: 1px solid rgb(var(--color-primary)) ;
    border-radius: ${getRemValue(20)};
