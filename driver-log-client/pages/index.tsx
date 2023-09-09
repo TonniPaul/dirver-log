@@ -1,9 +1,7 @@
-import { Inter } from 'next/font/google'
 import { NextPageWithLayout } from './_app'
 import GeneralLayout from '@/layout/general-layout'
 import Hero from '@/components/hero/hero'
 
-const inter = Inter({ subsets: ['latin'] })
 
 const Home: NextPageWithLayout = () => {
   return (
