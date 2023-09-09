@@ -1,4 +1,3 @@
-import SvgIcon from '@/components/svg-icon/svg-icon';
 import getRemValue from '@/utils/getRemValue';
 import styled from 'styled-components';
 
