@@ -1,8 +1,7 @@
 import { NextPageWithLayout } from "./_app";
 import SignUpCard from "@/components/cards/auth-card/auth-card";
-import { SignUpPageImageContainer } from "@/components/footer/footer.styles";
 import GeneralLayout from "@/layout/general-layout";
-import { AuthContainer, TabList } from "@/styles/auth-page-style";
+import { AuthContainer, AuthPageImageContainer, TabList } from "@/styles/auth-page-style";
 import Image from "next/image";
 import { Root, Trigger, Content } from '@radix-ui/react-tabs'
 import Button from "@/components/button/button";
@@ -16,13 +15,13 @@ const LoginPage: NextPageWithLayout = () => {
    return (
       <>
          <AuthContainer>
-            <SignUpPageImageContainer>
+            <AuthPageImageContainer>
                <Image
                   src='/assets/login-vector.svg'
                   alt='sign-up-form-illustration'
                   fill
                />
-            </SignUpPageImageContainer>
+            </AuthPageImageContainer>
             <Root defaultValue={type[0]}>
                <TabList>
                   {type.map((type) => {
