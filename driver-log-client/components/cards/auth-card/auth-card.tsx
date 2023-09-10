@@ -76,9 +76,7 @@ const SignUpCard = ({ isAdmin, type, isLoginPage }: IAuthCardProps) => {
       isLoginPage={isLoginPage}
       className={montserrat.className}
     >
-      <h1>
-        {isLoginPage ? type : ''} {isLoginPage ? pageType : 'Create an account'}
-      </h1>
+      <h1>{isLoginPage ? type + ' ' + pageType : 'Create an account'}</h1>
       <p>Please fill in the form below to {pageType.toLowerCase()}</p>
 
       <AuthForm isLoginPage={isLoginPage} onSubmit={handleSubmit(onSubmit)}>

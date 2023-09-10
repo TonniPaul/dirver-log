@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { List, Trigger } from '@radix-ui/react-tabs';
+import { List } from '@radix-ui/react-tabs';
 
 export const AuthContainer = styled.div`
   max-width: var(--max-width);
@@ -26,6 +26,20 @@ export const TabList = styled(List)`
   justify-content: center;
   gap: 2rem;
   margin-bottom: 2rem;
+
+  & > * {
+    padding: 1rem 2rem;
+    border: 2px solid;
+    color: rgb(var(--color-primary));
+    border-color: currentColor;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  & > *:nth-of-type(2) {
+    color: rgb(var(--color-secondary-b));
+  }
 `;
 
 export const AuthPageImageContainer = styled.div`

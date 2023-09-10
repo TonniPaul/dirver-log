@@ -8,14 +8,10 @@ import {
 } from '@/styles/auth-page-style';
 import Image from 'next/image';
 import { Root, Trigger, Content } from '@radix-ui/react-tabs';
-import Button from '@/components/button/button';
-import { useState } from 'react';
 
 const type = ['Driver', 'Admin'];
 
 const LoginPage: NextPageWithLayout = () => {
-  const [activeType, setActiveType] = useState(type[0]);
-
   return (
     <>
       <AuthContainer>
@@ -31,27 +27,18 @@ const LoginPage: NextPageWithLayout = () => {
             {type.map((type) => {
               return (
                 <Trigger asChild value={type} key={type}>
-                  <Button
-                    primary={type === activeType}
-                    onClick={() => setActiveType(type)}
-                  >
-                    Log In as {type}
-                  </Button>
+                  <span>Log In as {type}</span>
                 </Trigger>
               );
             })}
           </TabList>
 
           <Content value={type[0]}>
-            <SignUpCard type={type[0]} isLoginPage isAdmin />
+            <SignUpCard type={type[0]} isLoginPage />
           </Content>
 
           <Content value={type[1]}>
-            <SignUpCard
-              type={type[1]}
-              isLoginPage
-              isAdmin={activeType === type[1]}
-            />
+            <SignUpCard type={type[1]} isLoginPage isAdmin />
           </Content>
         </Root>
       </AuthContainer>
