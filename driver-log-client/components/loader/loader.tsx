@@ -34,13 +34,13 @@ const Bounce = styled.div`
 `;
 
 const BtnLoader = () => {
-   return (
-      <SpinnerContainer>
-         <Bounce></Bounce>
-         <Bounce></Bounce>
-         <Bounce></Bounce>
-      </SpinnerContainer>
-   )
-}
+  return (
+    <SpinnerContainer>
+      <Bounce></Bounce>
+      <Bounce></Bounce>
+      <Bounce></Bounce>
+    </SpinnerContainer>
+  );
+};
 
 export default BtnLoader;

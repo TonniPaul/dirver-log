@@ -1,42 +1,42 @@
 import styled from 'styled-components';
-import { List, Trigger } from '@radix-ui/react-tabs'
+import { List, Trigger } from '@radix-ui/react-tabs';
 
 export const AuthContainer = styled.div`
-   max-width: var(--max-width);
-   margin: 0 auto;
-   padding: 2rem 1rem;
-   gap: 4rem;
-   
-   align-items: center;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  gap: 4rem;
 
-   @media screen and (min-width: 56.25em) {
-      display: flex;
-      justify-content: center;
-      padding: 2rem;
-      padding-top: 4rem;
+  align-items: center;
 
-      & > div {
-         flex-basis: 45%;
-      }
-   }
-`
+  @media screen and (min-width: 56.25em) {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    padding-top: 4rem;
+
+    & > div {
+      flex-basis: 45%;
+    }
+  }
+`;
 
 export const TabList = styled(List)`
-   display: flex;
-   justify-content: center;
-   gap: 2rem;
-   margin-bottom: 2rem;
-`
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+`;
 
 export const AuthPageImageContainer = styled.div`
-   position: relative;
-   aspect-ratio: 7/5;
-   
-   @media screen and (min-width: 56.25em) {
-      aspect-ratio: 1;
-   }
+  position: relative;
+  aspect-ratio: 7/5;
 
-   & > img {
-      object-fit: cover;
-   }
-`
+  @media screen and (min-width: 56.25em) {
+    aspect-ratio: 1;
+  }
+
+  & > img {
+    object-fit: cover;
+  }
+`;

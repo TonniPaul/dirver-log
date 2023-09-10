@@ -27,16 +27,15 @@ export const AuthCardContainer = styled.div<IAuthCardStyleProps>`
    }
    
    ${({ isAdmin }) =>
-      isAdmin && `
+   isAdmin && `
          border-color: rgb(var(--color-secondary-b));
       `
    }
 
    ${({ isLoginPage }) =>
-      isLoginPage && `
+   isLoginPage && `
          border-radius: ${getRemValue(20)};
       `
-   }
    }
 `;
 
@@ -44,10 +43,10 @@ export const AuthForm = styled.form<IAuthCardStyleProps>`
    padding-top: 2rem ;
 
    ${({ isLoginPage }) =>
-      isLoginPage && `
+   isLoginPage && `
          padding-top: 4rem;
       `
-   }
+}
 
 `
 
@@ -70,7 +69,7 @@ export const AuthButton = styled.button<IAuthCardStyleProps>`
    }
 
     ${({ isAdmin }) =>
-      isAdmin && `
+   isAdmin && `
          background-color: rgb(var(--color-secondary-b));
          color: rgb(var(--color-white));
       `
@@ -88,7 +87,7 @@ export const AuthTextStyle = styled.p<IAuthCardStyleProps>`
       color: rgb(var(--color-secondary-b));
 
        ${({ isAdmin }) =>
-      isAdmin && `
+   isAdmin && `
          color: rgb(var(--color-black));
       `
    }

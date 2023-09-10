@@ -7,8 +7,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ToastContainer } from 'react-toastify';
 
-
-
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
@@ -30,11 +28,10 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
         }
       `}</style>
       <QueryClientProvider client={queryClient}>
-
         <GlobalStyles />
         <ToastContainer />
         {getLayout(<Component {...pageProps} />)}
-        <ReactQueryDevtools initialIsOpen={false} ></ReactQueryDevtools>
+        <ReactQueryDevtools initialIsOpen={false}></ReactQueryDevtools>
       </QueryClientProvider>
     </>
   );
