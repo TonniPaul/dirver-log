@@ -81,11 +81,7 @@ const SignUpCard = ({ isAdmin, type, isLoginPage }: IAuthCardProps) => {
       </h1>
       <p>Please fill in the form below to {pageType.toLowerCase()}</p>
 
-      <AuthForm
-        isAdmin={isAdmin}
-        isLoginPage={isLoginPage}
-        onSubmit={handleSubmit(onSubmit)}
-      >
+      <AuthForm isLoginPage={isLoginPage} onSubmit={handleSubmit(onSubmit)}>
         {!isLoginPage && (
           <FormInputContainer
             htmlFor="companyName"

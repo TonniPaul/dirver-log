@@ -24,6 +24,7 @@ export const HeroDescriptionContainer = styled.div`
 
   & > h1 {
     font-size: ${getRemValue(25)};
+    color: rgb(var(--color-secondary-b));
     margin-bottom: 2rem;
   }
 

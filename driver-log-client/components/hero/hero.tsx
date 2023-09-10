@@ -10,7 +10,7 @@ const Hero = () => {
   return (
     <HeroWrapper>
       <HeroDescriptionContainer>
-        <h1>Driver Log</h1>
+        <h1>Fleet management made easy with Driver Log</h1>
         <p>
           Efficiently Track and Manage Your Driver Logs with Driver Log -
           Simplify Compliance, Maximize Efficiency!

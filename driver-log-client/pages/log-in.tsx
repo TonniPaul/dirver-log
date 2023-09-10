@@ -43,11 +43,15 @@ const LoginPage: NextPageWithLayout = () => {
           </TabList>
 
           <Content value={type[0]}>
-            <SignUpCard type={type[0]} isLoginPage />
+            <SignUpCard type={type[0]} isLoginPage isAdmin />
           </Content>
 
           <Content value={type[1]}>
-            <SignUpCard type={type[1]} isAdmin isLoginPage />
+            <SignUpCard
+              type={type[1]}
+              isLoginPage
+              isAdmin={activeType === type[1]}
+            />
           </Content>
         </Root>
       </AuthContainer>
