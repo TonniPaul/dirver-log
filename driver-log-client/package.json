@@ -41,7 +41,6 @@
     "husky": "^8.0.0",
     "lint-staged": "^14.0.1",
     "prettier": "3.0.3",
-    "@types/styled-components": "^6.0.7",
     "cspell": "^7.0.1"
   }
 }
