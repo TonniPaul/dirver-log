@@ -1,24 +1,17 @@
-import { Inter } from 'next/font/google'
-import { NextPageWithLayout } from './_app'
-import GeneralLayout from '@/layout/general-layout'
-import Hero from '@/components/hero/hero'
-
-const inter = Inter({ subsets: ['latin'] })
+import { NextPageWithLayout } from './_app';
+import GeneralLayout from '@/layout/general-layout';
+import Hero from '@/components/hero/hero';
 
 const Home: NextPageWithLayout = () => {
   return (
     <>
       <Hero />
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
 
 Home.getLayout = function getLayout(page) {
-  return (
-    <GeneralLayout pageTitle='Home'>
-      {page}
-    </GeneralLayout>
-  )
-}
+  return <GeneralLayout pageTitle="Home">{page}</GeneralLayout>;
+};

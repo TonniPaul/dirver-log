@@ -2,16 +2,16 @@ import { ReactNode } from 'react';
 import { BtnStyle, IBtnStyleSProps } from './button.style';
 
 export interface IButtonProp extends IBtnStyleSProps {
-   children: ReactNode;
+  children: ReactNode;
+  onClick?: () => void;
 }
 
-const Button = ({ primary, children, isBlock }: IButtonProp) => {
-
-   return (
-      <BtnStyle primary={primary} isBlock={isBlock}>
-         {children}
-      </BtnStyle>
-   );
+const Button = ({ primary, children, isBlock, onClick }: IButtonProp) => {
+  return (
+    <BtnStyle primary={primary} isBlock={isBlock} onClick={onClick}>
+      {children}
+    </BtnStyle>
+  );
 };
 
 export default Button;

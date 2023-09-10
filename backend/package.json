@@ -1,0 +1,44 @@
+{
+  "name": "driverlogserver",
+  "version": "1.0.0",
+  "description": "My driver log app backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js",
+    "server": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IsaacPhiri/DriverLog.git"
+  },
+  "keywords": [
+    "Driver"
+  ],
+  "author": "Isaac Phiri",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/IsaacPhiri/DriverLog/issues"
+  },
+  "homepage": "https://github.com/IsaacPhiri/DriverLog#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "colors": "^1.4.0",
+    "config": "^3.3.9",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "eslint": "^8.47.0",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongodb": "^5.6.0",
+    "mongoose": "^7.2.2",
+    "validation": "^0.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
