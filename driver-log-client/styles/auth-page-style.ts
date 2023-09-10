@@ -37,6 +37,6 @@ export const AuthPageImageContainer = styled.div`
   }
 
   & > img {
-    object-fit: cover;
+    object-fit: contain;
   }
 `;
