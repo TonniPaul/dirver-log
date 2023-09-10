@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "cd .. && husky install driver-log-client/.husky"
   },
   "dependencies": {
     "@radix-ui/react-tabs": "^1.0.4",
@@ -38,8 +39,10 @@
     "@types/validator": "^13.11.1",
     "@typescript-eslint/eslint-plugin": "^6.5.0",
     "eslint-config-prettier": "^9.0.0",
-    "husky": "^8.0.3",
+    "husky": "^8.0.0",
     "lint-staged": "^14.0.1",
-    "prettier": "3.0.3"
+    "prettier": "3.0.3",
+    "@types/styled-components": "^6.0.7",
+    "cspell": "^7.0.1"
   }
 }

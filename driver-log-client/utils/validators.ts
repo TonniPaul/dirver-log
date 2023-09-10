@@ -1,7 +1,7 @@
 export function isValidPhoneNumber(phoneNumber: string) {
   // Regex to check valid
   // International Phone Numbers
-  let regex = new RegExp(/^[+]{1}(?:[0-9\-\(\)\/\.]\s?){6,15}[0-9]{1}$/);
+  const regex = new RegExp(/^[+]{1}(?:[0-9\-\(\)\/\.]\s?){6,15}[0-9]{1}$/);
 
   // matches the ReGex
   return regex.test(phoneNumber);

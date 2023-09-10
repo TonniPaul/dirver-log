@@ -30,7 +30,7 @@ const LoginPage: NextPageWithLayout = () => {
           <TabList>
             {type.map((type) => {
               return (
-                 <Trigger asChild value={type} key={type}>
+                <Trigger asChild value={type} key={type}>
                   <Button
                     primary={type === activeType}
                     onClick={() => setActiveType(type)}
