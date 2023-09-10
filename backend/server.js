@@ -50,7 +50,7 @@ if (process.env.NODE_ENV === 'production') {
 	});
 }
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 
 // Error handling middleware
 app.use(notFound);
