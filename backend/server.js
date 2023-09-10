@@ -27,7 +27,7 @@ app.use(cors({ origin: true, credentials: true }));
 app.use(express.json({ extended: false }));
 
 app.get('/', (req, res) =>
-  res.send('<h1>Welcome to the DriverLog Server App</h1>')
+	res.send('<h1>Welcome to the DriverLog Server App</h1>')
 );
 
 // use Routes
@@ -40,16 +40,14 @@ app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
 
 if (process.env.NODE_ENV === 'production') {
-  const __dirname = path.resolve();
-  app.use(express.static(path.join(__dirname, '/frontend/dist')));
+	const __dirname = path.resolve();
+	app.use(express.static(path.join(__dirname, '/frontend/dist')));
 
-  app.get('*', (req, res) =>
-    res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'))
-  );
+	app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html')));
 } else {
-  app.get('/', (req, res) => {
-    res.send('API is running...');
-  });
+	app.get('/', (req, res) => {
+		res.send('API is running...');
+	});
 }
 
 const port = process.env.PORT || 5000;
@@ -58,4 +56,6 @@ const port = process.env.PORT || 5000;
 app.use(notFound);
 app.use(errorHandler);
 
-app.listen(port, () => console.log(`Server running on port ${port}`));
+app.listen(port, () =>
+	console.log(`Server running on port ${port}`)
+);

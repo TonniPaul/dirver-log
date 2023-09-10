@@ -9,8 +9,8 @@ const GlobalStyles = createGlobalStyle`
     --padding-lg: 4rem 2rem;
     --padding-sm: 3rem 1rem;
     --color-black: 0, 0, 0;
-    --color-primary: 248, 141, 6;
-    --color-secondary-b: 127, 27, 183;
+    --color-primary: 244, 101, 36;
+    --color-secondary-b: 56, 57, 93;
     --color-white: 255, 255, 255;
 }
 
@@ -49,10 +49,6 @@ button {
 button:disabled {
   cursor: not-allowed !important;
   opacity: 0.3;
-}
-
-img {
-  z-index: -1;
 }
 
 `;
