@@ -10,7 +10,9 @@ const requireAdmin = asyncHandler(async (req, res, next) => {
     const token = req.cookies.token;
 
     if (!token) {
-      return res.status(401).json({ error: 'Not Authorized: No access tokens' });
+      return res
+        .status(401)
+        .json({ error: 'Not Authorized: No access tokens' });
     }
 
     // Verify the access token and extract the payload
@@ -18,7 +20,9 @@ const requireAdmin = asyncHandler(async (req, res, next) => {
 
     // Check if the user is an admin
     if (payload.role !== 'admin') {
-      return res.status(403).json({ error: 'Forbidden: Only admin access allowed' });
+      return res
+        .status(403)
+        .json({ error: 'Forbidden: Only admin access allowed' });
     }
 
     // Find the admin user by ID
@@ -34,7 +38,9 @@ const requireAdmin = asyncHandler(async (req, res, next) => {
     next();
   } catch (error) {
     console.log(error);
-    return res.status(401).json({ error: 'Not Authorized: Invalid access token' });
+    return res
+      .status(401)
+      .json({ error: 'Not Authorized: Invalid access token' });
   }
 });
 

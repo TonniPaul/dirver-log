@@ -12,7 +12,6 @@ The package manager used in this project is npm and as such you would need to ha
 
 ## Getting started
 
-
 For first time users
 
 - Clone this repo onto your machine

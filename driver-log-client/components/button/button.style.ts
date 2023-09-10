@@ -7,7 +7,7 @@ export interface IBtnStyleSProps {
   isBlock?: boolean;
 }
 
-export const BtnStyle = styled.button <IBtnStyleSProps>`
+export const BtnStyle = styled.button<IBtnStyleSProps>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,7 +37,7 @@ export const BtnStyle = styled.button <IBtnStyleSProps>`
   `}
 `;
 
-export const LinkBtn = styled(Link) <IBtnStyleSProps>`
+export const LinkBtn = styled(Link)<IBtnStyleSProps>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,7 +59,7 @@ export const LinkBtn = styled(Link) <IBtnStyleSProps>`
     color: rgb(var(--color-white));
   `}
 
-   ${({ isBlock }) =>
+  ${({ isBlock }) =>
     isBlock &&
     `
     width: 100%;
