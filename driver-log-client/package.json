@@ -27,13 +27,6 @@
     "*.{js,jsx,ts,tsx,css,md}": "prettier --write"
   },
   "devDependencies": {
-    "@types/validator": "^13.11.1",
-    "@typescript-eslint/eslint-plugin": "^6.5.0",
-    "eslint-config-prettier": "^9.0.0",
-    "husky": "^8.0.0",
-    "lint-staged": "^14.0.1",
-    "prettier": "3.0.3",
-    "@types/styled-components": "^6.0.7",
-    "cspell": "^7.0.1"
+    "@typescript-eslint/eslint-plugin": "^6.5.0"
   }
 }
