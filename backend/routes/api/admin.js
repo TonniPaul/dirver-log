@@ -7,6 +7,7 @@ const protect = require('../../middleware/authMiddleware');
 router.get('/', protect, getAdmins);
 router.get('/me', protect, getAdminProfile);
 router.post('/create-admin', createAdmin);
-router.route('/:id').get(protect, getAdmin).put(protect, updateAdmin).delete(protect, deleteAdmin);
+router.put('/profile', protect, updateAdmin);
+router.route('/:id').get(protect, getAdmin).delete(protect, deleteAdmin);
 
 module.exports = router;

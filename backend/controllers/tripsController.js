@@ -90,6 +90,7 @@ const deleteTrip = asyncHandler(async (req, res) => {
         if (!req.user) {
             return res.status(404).json({ error: 'No user found' });
         }
+        // Check if the user is an admin
         if (trip.driver?.toString() !== req.user.id) {
             return res.status(401).json({ error: 'Unauthorized' });
         }
