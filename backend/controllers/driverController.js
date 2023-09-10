@@ -6,7 +6,8 @@ const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-
 
 const getDriver = asyncHandler(async (req, res) => {
     try {
-        const driver = await Driver.findById(req.params.id);
+        const driver = await Driver.findById(req.params.id)
+        .populate('admin');
         if (!driver) {
             return res.status(404).json({ error: 'Driver not found' });
         }
@@ -18,8 +19,11 @@ const getDriver = asyncHandler(async (req, res) => {
 });
 
 const getDrivers = asyncHandler(async (req, res) => {
+    let query = {};
+    query.admin = req.user.id;
     try {
-        const drivers = await Driver.find();
+        const drivers = await Driver.find(query)
+        .populate('admin');
         res.json(drivers);
       } catch (error) {
         res.status(404);
@@ -124,7 +128,8 @@ const createDriver = asyncHandler(async (req, res) => {
             email,
             homeAddress,
             licenseExpiryDate,
-            password: hash
+            password: hash,
+            admin: req.user.id
             });
             await driver.save();
             res.status(200).json({
@@ -187,19 +192,19 @@ const updateDriver = asyncHandler(async (req, res) => {
   });
 
 const deleteDriver = asyncHandler(async (req, res) => {
-    try {
-        const driver = await Driver.findById(req.params.id);
-        if (!driver) {
-            return res.status(404).json({ error: 'Driver not found' });
-        }
-        await driver.remove();
-        res.json({ message: 'Driver removed' });
-    } catch (error) {
-        res.status(500);
-        throw new Error('Internal server error');
-    }
-}
-);
+    await Driver.findByIdAndRemove(req.params.id)
+        .then(driver => {
+            if (!driver) {
+              return res.status(404).throw(new Error('Driver user not found'));
+            }
+            res.json({ message: 'Driver user deleted successfully' });
+        })
+        .catch(err => {
+            res.status(400);
+            throw new Error('Internal server error');
+        });
+});
+
 
 module.exports = {
     getDriverProfile,
