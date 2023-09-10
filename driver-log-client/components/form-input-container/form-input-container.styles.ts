@@ -79,6 +79,7 @@ export const TogglePasswordBtn = styled.button`
     cursor: pointer;
     width: 20px;
     height: 20px;
+    opacity: 0.4;
   }
 `;
 
