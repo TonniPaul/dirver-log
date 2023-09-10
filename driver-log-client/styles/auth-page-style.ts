@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { List, Trigger } from '@radix-ui/react-tabs';
+import { List } from '@radix-ui/react-tabs';
 
 export const AuthContainer = styled.div`
   max-width: var(--max-width);
