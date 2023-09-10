@@ -4,8 +4,8 @@ import Document, {
   Main,
   NextScript,
   DocumentContext,
-} from 'next/document';
-import { ServerStyleSheet } from 'styled-components';
+} from "next/document";
+import { ServerStyleSheet } from "styled-components";
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -37,7 +37,9 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head>{this.props.styles}</Head>
+        <Head>
+          {this.props.styles}
+        </Head>
         <body>
           <Main />
           <NextScript />
