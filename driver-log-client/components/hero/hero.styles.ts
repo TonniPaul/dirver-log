@@ -22,11 +22,10 @@ export const HeroWrapper = styled.section`
 export const HeroDescriptionContainer = styled.div`
    text-align: center;
 
-  & > h1 {
-    font-size: ${getRemValue(25)};
-    color: rgb(var(--color-secondary-b));
-    margin-bottom: 2rem;
-  }
+   & > h1 {
+      font-size: ${getRemValue(25)};
+      margin-bottom: 2rem;
+   }
 
    & > p {
       font-weight: 600;
