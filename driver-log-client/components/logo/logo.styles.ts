@@ -2,10 +2,20 @@ import getRemValue from '@/utils/getRemValue';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-export const LogoContainer = styled(Link)`
+export interface ILogoStyleProps {
+  isPrimary?: boolean;
+}
+
+export const LogoContainer = styled(Link)<ILogoStyleProps>`
   display: flex;
   align-items: center;
   z-index: 10;
+
+  ${({ isPrimary }) =>
+    isPrimary &&
+    `
+    color: rgb(var(--color-primary));
+  `}
 
   & > svg {
     fill: currentColor;

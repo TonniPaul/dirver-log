@@ -5,4 +5,3 @@ cd ./driver-log-client/
 npx lint-staged
 
 npx next lint
-npx prettier . --write
