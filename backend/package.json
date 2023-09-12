@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/IsaacPhiri/DriverLog#readme",
   "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
     "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
@@ -36,6 +37,7 @@
     "jsonwebtoken": "^9.0.0",
     "mongodb": "^5.6.0",
     "mongoose": "^7.2.2",
+    "twilio": "^4.17.0",
     "validation": "^0.0.1"
   },
   "devDependencies": {
