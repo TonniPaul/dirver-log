@@ -1,15 +1,15 @@
 import { FC, SVGProps } from 'react';
 
 interface ISvgProps extends SVGProps<SVGSVGElement> {
-  name: string;
+   name: string;
 }
 
 const SvgIcon: FC<ISvgProps> = ({ name, ...props }) => {
-  return (
-    <svg {...props}>
-      <use xlinkHref={`/assets/sprite.svg#icon-${name}`} />
-    </svg>
-  );
+   return (
+      <svg {...props}>
+         <use xlinkHref={`/assets/sprite.svg#icon-${name}`} />
+      </svg>
+   );
 };
 
 export default SvgIcon;

@@ -13,20 +13,20 @@ export const FlexContainer = styled.div<IFlexContainerProps>`
   flex: 1;
 
   ${({ gapLG }) =>
-    gapLG &&
-    `
+    gapLG && `
   gap: 1rem;
-  `}
+  `
+  }
 
   ${({ center }) =>
-    center &&
-    `
+    center && `
   justify-content: center;
-  `}
+  `
+  }
 
   ${({ spaceBetween }) =>
-    spaceBetween &&
-    `
+    spaceBetween && `
   justify-content: space-between;
-  `}
+  `
+  }
 `;

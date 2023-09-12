@@ -11,11 +11,9 @@ const protect = asyncHandler(async (req, res, next) => {
     const token = req.cookies.token;
 
     if (!token) {
-      return res
-        .status(401)
-        .json({ error: 'Not Authorized: No access tokens' });
+      return res.status(401).json({ error: 'Not Authorized: No access tokens' });
     }
-
+    
     // Verify the access token and extract the payload
     const payload = jwt.verify(token, process.env.TOKEN_SECRET);
 
@@ -38,9 +36,7 @@ const protect = asyncHandler(async (req, res, next) => {
     next();
   } catch (error) {
     console.log(error);
-    return res
-      .status(401)
-      .json({ error: 'Not Authorized: Invalid access token' });
+    return res.status(401).json({ error: 'Not Authorized: Invalid access token' });
   }
 });
 
