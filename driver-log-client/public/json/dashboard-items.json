@@ -1,0 +1,18 @@
+[
+  {
+    "icon": "dashboard",
+    "description": "Dashboard"
+  },
+  {
+    "icon": "manage",
+    "description": "Manage Drivers"
+  },
+  {
+    "icon": "report",
+    "description": "Reports"
+  },
+  {
+    "icon": "user",
+    "description": "Profile"
+  }
+]

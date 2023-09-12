@@ -2,19 +2,29 @@ import getRemValue from '@/utils/getRemValue';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-export const LogoContainer = styled(Link)`
-   display: flex;
-   align-items: center;
-   z-index: 10;
+export interface ILogoStyleProps {
+  isPrimary?: boolean;
+}
 
-   & > svg {
-      fill: currentColor;
-      width: ${getRemValue(35)};
-      height: ${getRemValue(35)};
-   }
+export const LogoContainer = styled(Link)<ILogoStyleProps>`
+  display: flex;
+  align-items: center;
+  z-index: 10;
 
-   & > p {
-      font-size: ${getRemValue(20)};
-      font-weight: 700;
-   }
+  ${({ isPrimary }) =>
+    isPrimary &&
+    `
+    color: rgb(var(--color-primary));
+  `}
+
+  & > svg {
+    fill: currentColor;
+    width: ${getRemValue(35)};
+    height: ${getRemValue(35)};
+  }
+
+  & > p {
+    font-size: ${getRemValue(20)};
+    font-weight: 700;
+  }
 `;

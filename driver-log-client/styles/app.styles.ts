@@ -12,6 +12,7 @@ const GlobalStyles = createGlobalStyle`
     --color-primary: 244, 101, 36;
     --color-secondary-b: 56, 57, 93;
     --color-white: 255, 255, 255;
+    --color-error: 196, 25, 25;
 }
 
 *, *::after, *::before {
