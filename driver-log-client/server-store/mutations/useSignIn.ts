@@ -21,11 +21,7 @@ const signIn = async (data: ISignInProps): Promise<ISignInResponse> => {
 };
 
 const useSignIn = () => {
-  return useMutation(signIn, {
-    onSuccess: async () => {
-      alert(`sign in successfully`);
-    },
-  });
+  return useMutation(signIn);
 };
 
 export default useSignIn;

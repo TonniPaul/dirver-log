@@ -15,6 +15,7 @@ import useCreateProfile, {
 } from '@/server-store/mutations/useCreateProfile';
 import useSignIn, { ISignInProps } from '@/server-store/mutations/useSignIn';
 import BtnLoader from '@/components/loader/loader';
+import { useRouter } from 'next/router';
 
 export interface IAuthCardProps extends IAuthCardStyleProps {
   type: string;
@@ -30,6 +31,7 @@ export interface IAuthFormProps {
 
 const SignUpCard = ({ isAdmin, type, isLoginPage }: IAuthCardProps) => {
   const pageType = !isLoginPage ? 'Sign up' : 'Log in';
+  const router = useRouter();
 
   const defaultValues: IAuthFormProps = {
     companyName: '',
@@ -43,8 +45,9 @@ const SignUpCard = ({ isAdmin, type, isLoginPage }: IAuthCardProps) => {
     defaultValues,
   });
 
-  const { mutate: createProfile, isLoading: isLoading } = useCreateProfile();
-  const { mutate: adminSign, isLoading: loading } = useSignIn();
+  const { mutate: createProfile, isLoading: isLoadingCreateProfile } =
+    useCreateProfile();
+  const { mutate: adminSign, isLoading: isLoadingSignIn } = useSignIn();
 
   const onSubmit: SubmitHandler<IAuthFormProps> = async (
     data: IAuthFormProps
@@ -62,7 +65,18 @@ const SignUpCard = ({ isAdmin, type, isLoginPage }: IAuthCardProps) => {
     };
 
     if (isLoginPage) {
-      return adminSign(signInPayload), reset();
+      return (
+        adminSign(signInPayload, {
+          onSuccess: () => {
+            router.push('/dashboard');
+          },
+          // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+          onError: (err: any) => {
+            err.response.data.message;
+          },
+        }),
+        reset()
+      );
     }
     createProfile(payload);
     reset();
@@ -202,12 +216,12 @@ const SignUpCard = ({ isAdmin, type, isLoginPage }: IAuthCardProps) => {
 
         <AuthButton isAdmin={isAdmin}>
           {!isLoginPage ? (
-            isLoading ? (
+            isLoadingCreateProfile ? (
               <BtnLoader />
             ) : (
               'Create account'
             )
-          ) : loading ? (
+          ) : isLoadingSignIn ? (
             <BtnLoader />
           ) : (
             'Log in'
