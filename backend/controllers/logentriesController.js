@@ -2,6 +2,8 @@ const LogEntry = require('../models/LogEntry');
 const Vehicle = require('../models/Vehicle');
 const Trip = require('../models/Trip');
 const asyncHandler = require('express-async-handler');
+const SMSNotification = require('../utils/smsNotifications.js');
+const emailNotification = require('../utils/emailNotifications.js');
 
 const getLogEntries = asyncHandler(async (req, res) => {
   let query = {};
@@ -85,6 +87,26 @@ const createLogEntry = asyncHandler(async (req, res) => {
       });
 
     const logEntry = await newLogEntry.save();
+
+    // Send a notification
+    const options = {
+      message: `New log entry created by ${req.user.firstName + ' ' + req.user.lastName} : \n on: ${logEntry.logDate} \n Distance: ${logEntry.trip.distance} \n Vehicle: ${logEntry.vehicle.licensePlate} \n Pupose: ${logEntry.trip.purpose} \n Remarks: ${logEntry.comments}`, 
+      phoneNumber: process.env.RECIPIENT_PHONE_NUMBER // Replace with the recipient's phone number
+    };
+
+    // Working on this part: Email notification
+    const options2 = {
+      email: process.env.RECIPIENT_EMAIL, // Replace with the recipient's email address
+      from: process.env.SENDGRID_EMAIL,
+      subject: 'New log entry created',
+      message: `New log entry created by ${req.user.firstName + ' ' + req.user.lastName} : \n on: ${logEntry.logDate} \n Distance: ${logEntry.trip.distance} \n Vehicle: ${logEntry.vehicle.licensePlate} \n Pupose: ${logEntry.trip.purpose} \n Remarks: ${logEntry.comments}`,
+      html: `<p>New log entry created by ${req.user.firstName + ' ' + req.user.lastName} : </p> <p>on: ${logEntry.logDate} </p> <p>Distance: ${logEntry.trip.distance} </p> <p>Vehicle: ${logEntry.vehicle.licensePlate} </p> <p>Pupose: ${logEntry.trip.purpose} </p> <p>Remarks: ${logEntry.comments}</p>`,
+    };
+
+    await emailNotification(options2);
+
+    await SMSNotification(options);
+
     res.status(201).json(logEntry);
   } catch (err) {
     console.log(err);
