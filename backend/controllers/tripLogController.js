@@ -1,6 +1,8 @@
 const TripLog = require('../models/TripLog');
 const Vehicle = require('../models/Vehicle');
 const asyncHandler = require('express-async-handler');
+const SMSNotification = require('../utils/smsNotifications.js');
+const { emailNotification } = require('../utils/emailNotifications.js');
 
 const getTripLogs = asyncHandler(async (req, res) => {
   let query = {};
@@ -76,7 +78,20 @@ const createTripLog = asyncHandler(async (req, res) => {
         });
 
     const triplog = await newTripLog.save();
+
+    // Send a notification
+    const options = {
+      message: `New log entry created by ${req.user.firstName + ' ' + req.user.lastName} : \n on: ${logEntry.logDate} \n Distance: ${logEntry.trip.distance} \n Vehicle: ${logEntry.vehicle.licensePlate} \n Pupose: ${logEntry.trip.purpose} \n Remarks: ${logEntry.comments}`, 
+      phoneNumber: process.env.RECIPIENT_PHONE_NUMBER
+    };
+
+    const userEmail = process.env.RECIPIENT_EMAIL;
+
+    await SMSNotification(options);
+    emailNotification(userEmail, logEntry, req);
+
     res.status(201).json(triplog);
+
   } catch (err) {
     console.log(err);
     res.status(500);
