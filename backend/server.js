@@ -10,7 +10,7 @@ const driversRoutes = require('./routes/api/drivers');
 const logentriesRoutes = require('./routes/api/logentries');
 const vehiclesRoutes = require('./routes/api/vehicles');
 const dutystatusRoutes = require('./routes/api/dutystatus');
-const tripsRoutes = require('./routes/api/trips');
+const triplogsRoutes = require('./routes/api/triplogs');
 const authRoutes = require('./routes/api/auth');
 const adminRoutes = require('./routes/api/admin');
 
@@ -35,7 +35,7 @@ app.use('/api/drivers', driversRoutes);
 app.use('/api/logentries', logentriesRoutes);
 app.use('/api/vehicles', vehiclesRoutes);
 app.use('/api/dutystatus', dutystatusRoutes);
-app.use('/api/trips', tripsRoutes);
+app.use('/api/triplogs', triplogsRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
 
