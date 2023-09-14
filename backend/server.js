@@ -7,7 +7,6 @@ const cookieParser = require('cookie-parser');
 
 // routes
 const driversRoutes = require('./routes/api/drivers');
-const logentriesRoutes = require('./routes/api/logentries');
 const vehiclesRoutes = require('./routes/api/vehicles');
 const dutystatusRoutes = require('./routes/api/dutystatus');
 const triplogsRoutes = require('./routes/api/triplogs');
@@ -32,7 +31,6 @@ app.get('/', (req, res) =>
 
 // use Routes
 app.use('/api/drivers', driversRoutes);
-app.use('/api/logentries', logentriesRoutes);
 app.use('/api/vehicles', vehiclesRoutes);
 app.use('/api/dutystatus', dutystatusRoutes);
 app.use('/api/triplogs', triplogsRoutes);
