@@ -1,7 +1,9 @@
 const TripLog = require('../models/TripLog');
 const Vehicle = require('../models/Vehicle');
+const Driver = require('../models/Driver');
+const Admin = require('../models/Admin');
 const asyncHandler = require('express-async-handler');
-const SMSNotification = require('../utils/smsNotifications.js');
+// const SMSNotification = require('../utils/smsNotifications.js');
 const { emailNotification } = require('../utils/emailNotifications.js');
 
 const getTripLogs = asyncHandler(async (req, res) => {
@@ -64,31 +66,51 @@ const createTripLog = asyncHandler(async (req, res) => {
       driver: req.user.id
     });
 
-    await Vehicle.findById(req.body.vehicle)
-        .then(vehicle => {
-            if (!vehicle) {
-                return res.status(404).json({ error: 'No vehicle found' });
-            }
-            newTripLog.vehicle = vehicle;
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500);
-            throw new Error('Internal server error');
-        });
+    try {
+      const vehicle = await Vehicle.findById(req.body.vehicle);
+      if (!vehicle) {
+        return res.status(404).json({ error: 'No vehicle found' });
+      }
+      newTripLog.vehicle = vehicle;
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+
+    try {
+      const driver = await Driver.findById(req.user.id);
+      if (!driver) {
+        return res.status(404).json({ error: 'No driver found' });
+      }
+      newTripLog.driver = driver;
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ error: 'Internal server error' });
+    }
 
     const triplog = await newTripLog.save();
 
-    // Send a notification
-    const options = {
-      message: `New log entry created by ${req.user.firstName + ' ' + req.user.lastName} : \n on: ${logEntry.logDate} \n Distance: ${logEntry.trip.distance} \n Vehicle: ${logEntry.vehicle.licensePlate} \n Pupose: ${logEntry.trip.purpose} \n Remarks: ${logEntry.comments}`, 
-      phoneNumber: process.env.RECIPIENT_PHONE_NUMBER
-    };
+    try {
+      const admin = await Admin.findById(triplog.driver.admin);
+      if (!admin) {
+        return res.status(404).json({ error: 'No admin found' });
+      }
+      triplog.admin = admin;
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ error: 'Internal server error' });
+    }
 
-    const userEmail = process.env.RECIPIENT_EMAIL;
+    // Send an SMS notification is out of credits: Twilio
+    // const options = {
+    //   message: `NEw triplog created by ${req.user.firstName + ' ' + req.user.lastName} : \n on: ${triplog.logDate} \n Distance: ${triplog.distance} \n Vehicle: ${triplog.vehicle.licensePlate} \n Pupose: ${triplog.purpose} \n Remarks: ${triplog.comments}`, 
+    //   phoneNumber: triplog.admin.companyContactNo,
+    // };
 
-    await SMSNotification(options);
-    emailNotification(userEmail, logEntry, req);
+    const userEmail = triplog.driver.email;
+
+    // await SMSNotification(options); // Ran out of trial account credits
+    emailNotification(userEmail, triplog, req);
 
     res.status(201).json(triplog);
 
