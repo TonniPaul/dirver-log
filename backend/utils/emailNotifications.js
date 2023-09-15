@@ -19,20 +19,20 @@ const MailGenerator = new Mailgen({
     }
 });
 
-const emailNotification = async (userEmail, logEntry, req) => {
+const emailNotification = async (userEmail, triplog, req) => {
     const response = {
         body: {
-            name : "DriverLog",
-            intro: "New Log Entry Created!",
+            name : `${triplog.admin.companyName}`,
+            intro: "New Triplog created!",
             table : {
                 data : [
                     {
-                      item : `<p>New log entry created by ${req.user.firstName + ' ' + req.user.lastName} : </p> <p>on: ${logEntry.logDate} </p> <p>Distance: ${logEntry.trip.distance} </p> <p>Vehicle: ${logEntry.vehicle.licensePlate} </p> <p>Purpose: ${logEntry.trip.purpose} </p> <p>Remarks: ${logEntry.comments}</p>`,
-                      description: "Log Entry",
+                      item : `<p>Triplog created by ${req.user.firstName + ' ' + req.user.lastName} </p> <p>DateTime: ${triplog.logDate} </p> <p>Distance: ${triplog.distance} </p> <p>Vehicle: ${triplog.vehicle.licensePlate} </p> <p>Purpose: ${triplog.purpose} </p> <p>Remarks: ${triplog.comments}</p>`,
+                      description: "Triplog",
                     }
                 ]
             },
-            outro: `Log entry created by ${req.user.firstName + ' ' + req.user.lastName}`
+            outro: `Driver: ${req.user.firstName + ' ' + req.user.lastName}`
         }
     };
 
