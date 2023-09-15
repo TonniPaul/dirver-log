@@ -18,6 +18,7 @@ router.put('/profile', protect, updateDriver);
 router
   .route('/:id')
   .get(protect, getDriver)
-  .delete(protect, requireAdmin, deleteDriver);
+  .delete(protect, requireAdmin, deleteDriver)
+  .put(protect, requireAdmin, updateDriver);
 
 module.exports = router;
