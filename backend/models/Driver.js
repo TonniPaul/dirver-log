@@ -18,9 +18,9 @@ const DriverSchema = new mongoose.Schema({
 		required: true
 	},
 	contactNumber: {
-		type: Number,
-		required: true
-	},	
+        type: String,
+        required: true
+    },	
 	email: {
 		type: String,
 		required: false,
