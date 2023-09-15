@@ -152,7 +152,7 @@ const createDriver = asyncHandler(async (req, res) => {
 });    
 
 const updateDriver = asyncHandler(async (req, res) => {
-    const driver = await Driver.findById(req.user._id);
+    const driver = await Driver.findById(req.params.id || req.user._id);
     
     if (driver) {
       driver.firstName = req.body.firstName || driver.firstName;
