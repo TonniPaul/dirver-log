@@ -27,8 +27,16 @@ const emailNotification = async (userEmail, triplog, req) => {
             table : {
                 data : [
                     {
-                      item : `<p>Triplog created by ${req.user.firstName + ' ' + req.user.lastName} </p> <p>DateTime: ${triplog.logDate} </p> <p>Distance: ${triplog.distance} </p> <p>Vehicle: ${triplog.vehicle.licensePlate} </p> <p>Purpose: ${triplog.purpose} </p> <p>Remarks: ${triplog.comments}</p>`,
-                      description: "Triplog",
+                        item : `<p>Triplog created by ${req.user.firstName + ' ' + req.user.lastName}</p>
+                                <p>DateTime: ${triplog.logDate}</p>
+                                <p>Origin: ${triplog.origin}</p>
+                                <p>Destination: ${triplog.destination}</p>
+                                <p>Distance: ${triplog.distance}</p>
+                                <p>Total Mileage: ${triplog.totalMileage}</p>
+                                <p>Vehicle: ${triplog.vehicle.make} ${triplog.vehicle.model} ${triplog.vehicle.licensePlate}</p>
+                                <p>Purpose: ${triplog.purpose}</p>
+                                <p>Remarks: ${triplog.comments}</p>`,
+                        description: "Triplog",
                     }
                 ]
             },
