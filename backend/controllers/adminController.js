@@ -41,7 +41,7 @@ const getAdmins = asyncHandler(async (req, res) => {
 });
 
 const createAdmin = asyncHandler(async (req, res) => {
-  let { companyName, companyEmail, password } = req.body;
+  let { companyName, companyEmail, companyContactNo, password } = req.body;
   let errors = [];
   if (!companyName) {
     errors.push({ companyName: 'required' });

@@ -32,10 +32,10 @@ This is a REST API for the DriverLog application. It is built using Node.js, Exp
 - GET/POST: /api/dutystatus - Get all duty statuses / Create a new duty status
 - GET/PUT/DELETE: /api/dutystatus/:id - Get a duty status by id / Update a duty status by id / Delete a duty status by id
 
-### Logentries
+### TripLogs
 
-- GET/POST: /api/logentries - Get all log entries / Create a new log entry
-- GET/PUT/DELETE: /api/logentries/:id - Get a log entry by id / Update a log entry by id / Delete a log entry by id
+- GET/POST: /api/triplogs - Get all log triplogs / Create a new triplog
+- GET/PUT/DELETE: /api/triplogs/:id - Get a triplog by id / Update a triplog by id / Delete a triplog by id
 
 ### Vehicles
 
