@@ -4,6 +4,7 @@ const cors = require('cors');
 const colors = require('colors');
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 const cookieParser = require('cookie-parser');
+const session = require('express-session');
 
 // routes
 const driversRoutes = require('./routes/api/drivers');
@@ -21,6 +22,15 @@ connectDB();
 
 // cors
 app.use(cors({ origin: true, credentials: true }));
+
+// express session
+app.use(
+  session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
 // init Middleware
 app.use(express.json({ extended: false }));
