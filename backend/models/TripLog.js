@@ -1,27 +1,21 @@
-// Load required packages
 const mongoose = require('mongoose');
 
 const TripLogSchema = new mongoose.Schema(
   {
     origin: {
       type: String,
-      required: true,
     },
     destination: {
       type: String,
-      required: true,
     },
     startMileage: {
       type: Number,
-      required: true,
     },
     endMileage: {
       type: Number,
-      required: true,
     },
     purpose: {
       type: String,
-      required: true,
     },
     distance: {
       type: Number,
@@ -32,7 +26,6 @@ const TripLogSchema = new mongoose.Schema(
     driver: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Driver',
-      required: true,
     },
     logDate: {
       type: Date,
@@ -41,11 +34,9 @@ const TripLogSchema = new mongoose.Schema(
     vehicle: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Vehicle',
-      required: true,
     },
     comments: {
       type: String,
-      required: true,
     },
   },
   { timestamps: true }
@@ -53,8 +44,10 @@ const TripLogSchema = new mongoose.Schema(
 
 // Calculate distance and total mileage before saving the trip
 TripLogSchema.pre('save', function (next) {
-  this.distance = calculateDistance(this.origin, this.destination);
-  this.totalMileage = this.endMileage - this.startMileage;
+  if (this.destination && this.endMileage) {
+    this.distance = calculateDistance(this.origin, this.destination);
+    this.totalMileage = this.endMileage - this.startMileage;
+  }
   next();
 });
 
