@@ -37,6 +37,27 @@ This is a REST API for the DriverLog application. It is built using Node.js, Exp
 - GET/POST: /api/triplogs - Get all log triplogs / Create a new triplog
 - GET/PUT/DELETE: /api/triplogs/:id - Get a triplog by id / Update a triplog by id / Delete a triplog by id
 
+```bash
+# Example of a triplog object : start trip - POST: /api/triplogs
+{
+  "origin": "128,090",
+  "startMileage": 1254,
+  "purpose": "Buy groceries.",
+  "vehicle": "6504efbb144765bf82459f7a"
+}
+```
+```bash
+# Example of a triplog object : end trip - P0ST: /api/triplogs
+{
+  "destination": "128,355",
+  "endMileage": 1277,
+  "purpose": "Buy groceries.",
+  "logDate": "2023",
+  "vehicle": "6504efbb144765bf82459f7a",
+  "comments": "We successfully got to the mall and bought the required items."
+}
+```
+
 ### Vehicles
 
 - GET/POST: /api/vehicles - Get all vehicles / Create a new vehicle
