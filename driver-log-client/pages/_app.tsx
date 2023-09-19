@@ -15,9 +15,11 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 
-export default function App({ Component, pageProps }: AppPropsWithLayout) {
+export default function App({
+  Component,
+  pageProps: { ...pageProps },
+}: AppPropsWithLayout) {
   const getLayout = Component.getLayout || ((page: ReactNode) => page);
-
   const queryClient = new QueryClient();
 
   return (
@@ -31,7 +33,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
         <GlobalStyles />
         <ToastContainer />
         {getLayout(<Component {...pageProps} />)}
-        <ReactQueryDevtools initialIsOpen={false}></ReactQueryDevtools>
+        <ReactQueryDevtools></ReactQueryDevtools>
       </QueryClientProvider>
     </>
   );
