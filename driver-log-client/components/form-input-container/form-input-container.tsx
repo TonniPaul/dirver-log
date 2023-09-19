@@ -1,4 +1,4 @@
-import { FC, InputHTMLAttributes, useState } from 'react';
+import { FC, InputHTMLAttributes, useEffect, useState } from 'react';
 import { useController, UseControllerProps } from 'react-hook-form';
 import {
   InputFlexContainer,
@@ -34,6 +34,18 @@ const FormInputContainer: FC<IFormInputProps> = ({
     fieldState: { error },
   } = useController(controller);
   const [showPassword, setShowPassword] = useState(false);
+
+  useEffect(() => {
+    const hidePasswordBack = setInterval(() => {
+      if (showPassword) {
+        setShowPassword(false);
+      }
+    }, 500);
+
+    return () => {
+      clearInterval(hidePasswordBack);
+    };
+  }, [showPassword]);
 
   return (
     <InputFormField>
