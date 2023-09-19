@@ -2,4 +2,4 @@
 . "$(dirname -- "$0")/_/husky.sh"
 cd ./driver-log-client/
 
-npx lint-staged
+npm next lint
