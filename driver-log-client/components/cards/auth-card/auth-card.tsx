@@ -19,7 +19,7 @@ import { useRouter } from 'next/router';
 import useDriverSignIn, {
   IDriverSignInProps,
 } from '@/server-store/mutations/useDriverSignIn';
-import { types } from '@/pages/log-in';
+import { types } from '@/pages/login';
 import { useStore } from '@/store';
 import routes from '../../../../lib/routes';
 
@@ -36,7 +36,7 @@ export interface IAuthFormProps {
 }
 
 const SignUpCard = ({ isAdmin, type, isLoginPage }: IAuthCardProps) => {
-  const pageType = !isLoginPage ? 'Sign up' : 'Log in';
+  const pageType = !isLoginPage ? 'Sign up' : 'Login';
   const router = useRouter();
   const { setAdmin, setDriver } = useStore();
 
@@ -257,15 +257,15 @@ const SignUpCard = ({ isAdmin, type, isLoginPage }: IAuthCardProps) => {
           ) : isLoadingSignIn || isLoadingDriverSignIn ? (
             <BtnLoader />
           ) : (
-            'Log in'
+            'Login'
           )}
         </AuthButton>
       </AuthForm>
 
       <AuthTextStyle isAdmin={isAdmin}>
         <span>{isLoginPage ? "Don't" : 'Already'} have an account ?</span>
-        <Link href={isLoginPage ? '/sign-up' : '/log-in'}>
-          {isLoginPage ? 'Sign up' : 'Log in'}
+        <Link href={isLoginPage ? routes.signUp() : routes.login()}>
+          {isLoginPage ? 'Sign up' : 'Login'}
         </Link>
       </AuthTextStyle>
     </AuthCardContainer>
