@@ -16,6 +16,12 @@ import useCreateProfile, {
 import useSignIn, { ISignInProps } from '@/server-store/mutations/useSignIn';
 import BtnLoader from '@/components/loader/loader';
 import { useRouter } from 'next/router';
+import useDriverSignIn, {
+  IDriverSignInProps,
+} from '@/server-store/mutations/useDriverSignIn';
+import { types } from '@/pages/log-in';
+import { useStore } from '@/store';
+import routes from '../../../../lib/routes';
 
 export interface IAuthCardProps extends IAuthCardStyleProps {
   type: string;
@@ -32,6 +38,7 @@ export interface IAuthFormProps {
 const SignUpCard = ({ isAdmin, type, isLoginPage }: IAuthCardProps) => {
   const pageType = !isLoginPage ? 'Sign up' : 'Log in';
   const router = useRouter();
+  const { setAdmin, setDriver } = useStore();
 
   const defaultValues: IAuthFormProps = {
     companyName: '',
@@ -48,37 +55,52 @@ const SignUpCard = ({ isAdmin, type, isLoginPage }: IAuthCardProps) => {
   const { mutate: createProfile, isLoading: isLoadingCreateProfile } =
     useCreateProfile();
   const { mutate: adminSign, isLoading: isLoadingSignIn } = useSignIn();
+  const { mutate: driverSignIn, isLoading: isLoadingDriverSignIn } =
+    useDriverSignIn();
 
   const onSubmit: SubmitHandler<IAuthFormProps> = async (
     data: IAuthFormProps
   ) => {
     const payload: ICreateProfileProps = {
-      companyEmail: data.email,
+      email: data.email,
       companyName: data.companyName,
       companyContactNo: data.phoneNumber,
       password: data.password,
     };
 
     const signInPayload: ISignInProps = {
-      companyEmail: data.email,
+      email: data.email,
+      password: data.password,
+    };
+
+    const driverSignInPayload: IDriverSignInProps = {
+      email: data.email,
       password: data.password,
     };
 
     if (isLoginPage) {
-      return (
-        adminSign(signInPayload, {
-          onSuccess: () => {
-            router.push('/dashboard');
+      if (type === types[0]) {
+        return driverSignIn(driverSignInPayload, {
+          onSuccess: (data) => {
+            setDriver(data);
+            router.replace(routes.dashboard());
+            reset();
           },
-          // eslint-disable-next-line  @typescript-eslint/no-explicit-any
-          onError: (err: any) => {
-            err.response.data.message;
-          },
-        }),
-        reset()
-      );
+        });
+      }
+      return adminSign(signInPayload, {
+        onSuccess: (data) => {
+          setAdmin(data);
+          router.replace(routes.dashboard());
+          reset();
+        },
+      });
     }
-    createProfile(payload);
+    createProfile(payload, {
+      onSuccess: async () => {
+        router.replace('/log-in');
+      },
+    });
     reset();
   };
 
@@ -162,37 +184,39 @@ const SignUpCard = ({ isAdmin, type, isLoginPage }: IAuthCardProps) => {
             name: 'password',
             rules: {
               required: 'Please enter a password',
-              validate: {
-                hasUppercase: (value) =>
-                  /[A-Z]/.test(value) ||
-                  'Password must contain at least one uppercase letter',
-                hasLowercase: (value) =>
-                  /[a-z]/.test(value) ||
-                  'Password must contain at least one lowercase letter',
-                hasSpecialChar: (value) =>
-                  /[\W_]/.test(value) ||
-                  'Password must contain at least one special character',
-                hasNumber: (value) =>
-                  /\d/.test(value) ||
-                  'Password must contain at least one number',
-                hasLength: (value) =>
-                  value.length >= 6 ||
-                  'Password must be at least 6 characters long',
-              },
+              validate: !isLoginPage
+                ? {
+                    hasUppercase: (value) =>
+                      /[A-Z]/.test(value) ||
+                      'Password must contain at least one uppercase letter',
+                    hasLowercase: (value) =>
+                      /[a-z]/.test(value) ||
+                      'Password must contain at least one lowercase letter',
+                    hasSpecialChar: (value) =>
+                      /[\W_]/.test(value) ||
+                      'Password must contain at least one special character',
+                    hasNumber: (value) =>
+                      /\d/.test(value) ||
+                      'Password must contain at least one number',
+                    hasLength: (value) =>
+                      value.length >= 6 ||
+                      'Password must be at least 6 characters long',
+                  }
+                : {},
             },
           }}
           isAdmin={isAdmin}
         />
-        {isLoginPage && (
-          <button
+        {/* {isLoginPage && (
+          <ForgotPasswordButton
             onClick={(e) => {
               e.preventDefault();
               alert('calm down, I am not working yet');
             }}
           >
             Forgot password?
-          </button>
-        )}
+          </ForgotPasswordButton>
+        )} */}
 
         {!isLoginPage && (
           <FormInputContainer
@@ -214,14 +238,23 @@ const SignUpCard = ({ isAdmin, type, isLoginPage }: IAuthCardProps) => {
           />
         )}
 
-        <AuthButton isAdmin={isAdmin}>
+        <AuthButton
+          isAdmin={isAdmin}
+          disabled={
+            isLoginPage
+              ? type === types[0]
+                ? isLoadingDriverSignIn
+                : isLoadingSignIn
+              : isLoadingCreateProfile
+          }
+        >
           {!isLoginPage ? (
             isLoadingCreateProfile ? (
               <BtnLoader />
             ) : (
               'Create account'
             )
-          ) : isLoadingSignIn ? (
+          ) : isLoadingSignIn || isLoadingDriverSignIn ? (
             <BtnLoader />
           ) : (
             'Log in'
