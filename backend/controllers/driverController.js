@@ -132,18 +132,7 @@ const createDriver = asyncHandler(async (req, res) => {
             admin: req.user.id
             });
             await driver.save();
-            res.status(200).json({
-                _id: driver._id,
-                firstName: driver.firstName,
-                lastName: driver.lastName,
-                licenseNumber: driver.licenseNumber,
-                nationalId: driver.nationalId,
-                contactNumber: driver.contactNumber,
-                email: driver.email,
-                homeAddress: driver.homeAddress,
-                licenseExpiryDate: driver.licenseExpiryDate,
-                role: driver.role,
-            });
+            res.status(200).json({ message: 'Driver created successfully' });
     } catch (err) {
         console.log(err);
         res.status(500);
