@@ -58,14 +58,14 @@ const logout = asyncHandler(async (req, res) => {
 });
 
 const signinAdmin = asyncHandler(async (req, res) => {
-  const { companyEmail, password } = req.body;
+  const { email, password } = req.body;
 
-  if (!companyEmail || !password) {
+  if (!email || !password) {
     throw new Error('Please enter all fields');
   }
 
   try {
-    const admin = await Admin.findOne({ companyEmail: companyEmail });
+    const admin = await Admin.findOne({ email: email });
 
     if (!admin) {
       throw new Error('Admin Not Found');
@@ -75,9 +75,9 @@ const signinAdmin = asyncHandler(async (req, res) => {
       if (!isMatch) {
         throw new Error('Incorrect Email or Password');
       } else {
-        createJWT(res, admin.companyEmail, admin._id, admin.role);
+        createJWT(res, admin.email, admin._id, admin.role);
 
-        return res.status(200).json('Admin Logged in successfully');
+        return res.status(200).json(admin);
       }
     }
   } catch (err) {

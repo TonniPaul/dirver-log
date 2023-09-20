@@ -22,7 +22,7 @@ const MailGenerator = new Mailgen({
 const emailNotification = async (userEmail, triplog, req) => {
     const response = {
         body: {
-            name : `${triplog.admin.companyName}`,
+            name : `${triplog.admin.name}`,
             intro: "New Triplog created!",
             table : {
                 data : [
