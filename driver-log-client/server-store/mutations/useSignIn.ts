@@ -2,16 +2,20 @@ import { api } from '../queries/utils';
 import { useMutation } from '@tanstack/react-query';
 
 export interface ISignInProps {
-  companyEmail: string;
+  email: string;
   password: string;
 }
 
-interface ISignInResponse {
+export interface ISignInResponse {
   _id: string;
-  companyName: string;
-  companyEmail: string;
-  companyContactNo: string;
+  name: string;
+  email: string;
+  password: string;
+  contactNo: string;
   role: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
 }
 
 const signIn = async (data: ISignInProps): Promise<ISignInResponse> => {

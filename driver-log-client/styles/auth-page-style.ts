@@ -24,11 +24,12 @@ export const AuthContainer = styled.div`
 export const TabList = styled(List)`
   display: flex;
   justify-content: center;
+  text-align: center;
   gap: 2rem;
   margin-bottom: 2rem;
 
   & > * {
-    padding: 1rem 2rem;
+    padding: 1rem;
     border: 2px solid;
     color: rgb(var(--color-primary));
     border-color: currentColor;

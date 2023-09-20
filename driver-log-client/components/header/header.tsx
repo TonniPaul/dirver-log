@@ -9,6 +9,9 @@ import {
 } from './header.styles';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import routes from '../../../lib/routes';
+import { useStore } from '@/store';
+import Button from '../button/button';
 
 const navLinks = [
   {
@@ -26,6 +29,7 @@ const navLinks = [
 ];
 const Header = () => {
   const [isActive, setIsActive] = useState(false);
+  const { admin, clearAdmin, clearDriver, driver } = useStore();
 
   useEffect(() => {
     if (isActive) {
@@ -54,15 +58,23 @@ const Header = () => {
               );
             })}
           </NavItems>
-          <NavLinkButton>
-            <LinkButton href="/log-in" isBlock onClick={handleClick}>
-              Sign In
-            </LinkButton>
 
-            <LinkButton href="/sign-up" primary isBlock onClick={handleClick}>
-              Sign Up
-            </LinkButton>
-          </NavLinkButton>
+          {admin || driver ? (
+            <Button onClick={admin ? clearAdmin : clearDriver}>
+              {' '}
+              Sign Out
+            </Button>
+          ) : (
+            <NavLinkButton>
+              <LinkButton href={routes.login()} isBlock onClick={handleClick}>
+                Sign In
+              </LinkButton>
+
+              <LinkButton href="/sign-up" primary isBlock onClick={handleClick}>
+                Sign Up
+              </LinkButton>
+            </NavLinkButton>
+          )}
         </NavLinksContainer>
         <MenuIcon name="menu" onClick={() => setIsActive(true)} />
       </nav>

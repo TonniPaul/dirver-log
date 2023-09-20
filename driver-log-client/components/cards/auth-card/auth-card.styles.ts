@@ -92,3 +92,7 @@ export const AuthTextStyle = styled.p<IAuthCardStyleProps>`
       `}
   }
 `;
+
+export const ForgotPasswordButton = styled.button`
+  color: inherit;
+`;

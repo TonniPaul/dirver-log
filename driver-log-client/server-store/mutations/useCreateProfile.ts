@@ -1,20 +1,19 @@
 import { api } from '../queries/utils';
 import { useMutation } from '@tanstack/react-query';
-import { Hash } from 'crypto';
 
 export interface ICreateProfileProps {
   companyName: string;
-  companyEmail: string;
+  email: string;
   companyContactNo: string;
   password: string;
 }
 
 interface ICreateProfileResponse {
   companyContactNo: string;
-  companyEmail: string;
+  email: string;
   companyName: string;
   createdAt: Date;
-  password: Hash;
+  password: string;
   role: string;
   updatedAt: Date;
 }
@@ -28,13 +27,7 @@ const createCompanyProfile = async (
 };
 
 const useCreateProfile = () => {
-  return useMutation(createCompanyProfile, {
-    onSuccess: async (data) => {
-      alert(
-        `An account has been created, login with your email ${data.companyEmail}`
-      );
-    },
-  });
+  return useMutation(createCompanyProfile);
 };
 
 export default useCreateProfile;

@@ -9,7 +9,7 @@ import {
 import Image from 'next/image';
 import { Root, Trigger, Content } from '@radix-ui/react-tabs';
 
-const type = ['Driver', 'Admin'];
+export const types = ['Driver', 'Admin'];
 
 const LoginPage: NextPageWithLayout = () => {
   return (
@@ -22,9 +22,9 @@ const LoginPage: NextPageWithLayout = () => {
             fill
           />
         </AuthPageImageContainer>
-        <Root defaultValue={type[0]}>
+        <Root defaultValue={types[0]}>
           <TabList>
-            {type.map((type) => {
+            {types.map((type) => {
               return (
                 <Trigger asChild value={type} key={type}>
                   <span>Log In as {type}</span>
@@ -33,12 +33,12 @@ const LoginPage: NextPageWithLayout = () => {
             })}
           </TabList>
 
-          <Content value={type[0]}>
-            <SignUpCard type={type[0]} isLoginPage />
+          <Content value={types[0]}>
+            <SignUpCard type={types[0]} isLoginPage />
           </Content>
 
-          <Content value={type[1]}>
-            <SignUpCard type={type[1]} isLoginPage isAdmin />
+          <Content value={types[1]}>
+            <SignUpCard type={types[1]} isLoginPage isAdmin />
           </Content>
         </Root>
       </AuthContainer>
