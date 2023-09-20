@@ -41,16 +41,16 @@ const getAdmins = asyncHandler(async (req, res) => {
 });
 
 const createAdmin = asyncHandler(async (req, res) => {
-  let { companyName, companyEmail, companyContactNo, password } = req.body;
+  let { name, email, contactNo, password } = req.body;
   let errors = [];
-  if (!companyName) {
-    errors.push({ companyName: 'required' });
+  if (!name) {
+    errors.push({ name: 'required' });
   }
-  if (!companyEmail) {
+  if (!email) {
     errors.push({ email: 'required' });
   }
-  if (!companyContactNo) {
-    errors.push({ companyContactNo: 'required' });
+  if (!contactNo) {
+    errors.push({ contactNo: 'required' });
   }
   if (!password) {
     errors.push({ password: 'required' });
@@ -60,20 +60,20 @@ const createAdmin = asyncHandler(async (req, res) => {
   }
 
   try {
-    const existingAdmin = await Admin.findOne();
+    const existingAdmin = await Admin.findOne({ email: email});
     if (existingAdmin) {
-      return res.status(400).json({ error: 'Admin user already exists' });
+      return res.status(400).json({ error: 'Admin user with this email already exists' });
     } else {
       const salt = await bcrypt.genSalt(10);
       const hash = await bcrypt.hash(password, salt);
       const admin = new Admin({
-        companyName: companyName,
-        companyEmail: companyEmail,
-        companyContactNo: companyContactNo,
+        name: name,
+        email: email,
+        contactNo: contactNo,
         password: hash,
       });
       const createdAdmin = await admin.save();
-      createJWT(res, admin.companyEmail, admin._id, admin.role);
+      createJWT(res, admin.email, admin._id, admin.role);
       res.status(201).json(createdAdmin);
     }
   } catch (error) {
@@ -86,11 +86,11 @@ const updateAdmin = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
     const {
-      companyName,
-      companyEmail,
+      name,
+      email,
       password,
-      companyRegNo,
-      companyAddress,
+      businessRegNo,
+      Address,
     } = req.body;
 
     // Find the admin user by ID
@@ -100,11 +100,11 @@ const updateAdmin = asyncHandler(async (req, res) => {
     }
 
     // Update the admin user properties
-    admin.companyName = companyName || admin.companyName;
-    admin.companyEmail = companyEmail || admin.companyEmail;
-    admin.companyContactNo = companyContactNo || admin.companyContactNo;
-    admin.companyRegNo = companyRegNo || admin.companyRegNo;
-    admin.companyAddress = companyAddress || admin.companyAddress;
+    admin.name = name || admin.name;
+    admin.email = email || admin.email;
+    admin.contactNo = contactNo || admin.contactNo;
+    admin.businessRegNo = businessRegNo || admin.businessRegNo;
+    admin.Address = Address || admin.Address;
     admin.password = await bcrypt.hash(password, 10);
 
     // Save the updated admin user to the database
