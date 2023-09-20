@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 
 const AdminSchema = new mongoose.Schema(
   {
-    companyName: {
+    name: {
       type: String,
       required: true,
     },
-    companyEmail: {
+    email: {
       type: String,
       required: false,
       match: [
@@ -19,13 +19,13 @@ const AdminSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    companyRegNo: {
+    businessRegNo: {
       type: String,
     },
-    companyContactNo: {
+    contactNo: {
       type: String,
     },
-    companyAddress: {
+    Address: {
       type: String,
     },
     role: {
