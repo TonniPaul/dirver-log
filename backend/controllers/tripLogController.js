@@ -144,7 +144,7 @@ const createTripLog = asyncHandler(async (req, res) => {
           res.status(500).json({ error: 'Internal server error' });
         }
 
-        const adminEmail = updatedTripLog.admin.companyEmail;
+        const adminEmail = updatedTripLog.admin.email;
         await emailNotification(adminEmail, updatedTripLog, req);
 
         res.status(201).json(updatedTripLog);
