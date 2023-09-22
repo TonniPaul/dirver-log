@@ -9,7 +9,7 @@ import {
 } from './header.styles';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import routes from '../../../lib/routes';
+import routes from '@/lib/routes';
 import { useStore } from '@/store';
 import Button from '../button/button';
 
@@ -60,17 +60,26 @@ const Header = () => {
           </NavItems>
 
           {admin || driver ? (
-            <Button onClick={admin ? clearAdmin : clearDriver}>
-              {' '}
-              Sign Out
-            </Button>
+            <NavLinkButton>
+              <Button isBlock onClick={admin ? clearAdmin : clearDriver}>
+                Sign Out
+              </Button>
+              <LinkButton href={routes.dashboard()} primary>
+                Dashboard
+              </LinkButton>
+            </NavLinkButton>
           ) : (
             <NavLinkButton>
               <LinkButton href={routes.login()} isBlock onClick={handleClick}>
                 Sign In
               </LinkButton>
 
-              <LinkButton href="/sign-up" primary isBlock onClick={handleClick}>
+              <LinkButton
+                href={routes.signUp()}
+                primary
+                isBlock
+                onClick={handleClick}
+              >
                 Sign Up
               </LinkButton>
             </NavLinkButton>
