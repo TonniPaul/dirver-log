@@ -46,7 +46,7 @@ const Dashboard = () => {
     if (!admin && !driver) {
       router.replace(routes.login());
     }
-  }, [admin, driver, router]);
+  }, []);
 
   return (
     <>

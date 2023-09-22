@@ -23,7 +23,7 @@ const LoginPage: NextPageWithLayout = () => {
     if (admin || driver) {
       router.replace(routes.dashboard());
     }
-  }, [admin, driver, router]);
+  }, []);
 
   return (
     <>
