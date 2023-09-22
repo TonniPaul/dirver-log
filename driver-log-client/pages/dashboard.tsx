@@ -20,6 +20,7 @@ import Popover from '@/components/popover/popover';
 import ManageDrivers from '@/components/manage-drivers/manage-drivers';
 import { useRouter } from 'next/router';
 import { useStore } from '@/store';
+import routes from '@/lib/routes';
 
 const Dashboard = () => {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
@@ -43,7 +44,7 @@ const Dashboard = () => {
     }
 
     if (!admin && !driver) {
-      router.replace('/log-in');
+      router.replace(routes.login());
     }
   }, [admin, driver, router]);
 

@@ -1,11 +1,11 @@
 import FormInputContainer from '@/components/form-input-container/form-input-container';
 import { CreateDriverFormStyle } from './create-driver-form.styles';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { AuthButton } from '../auth-card/auth-card.styles';
 import useCreateDriver, {
   ICreateDriverProps,
 } from '@/server-store/mutations/useCreateDriver';
 import BtnLoader from '@/components/loader/loader';
+import { FormButton } from '../form/form.styles';
 
 const defaultValues: ICreateDriverProps = {
   firstName: '',
@@ -18,6 +18,7 @@ const defaultValues: ICreateDriverProps = {
   licenseExpiryDate: '',
   password: '',
   password_confirmation: '',
+  admin: '',
 };
 
 const CreateDriverForm = () => {
@@ -186,10 +187,10 @@ const CreateDriverForm = () => {
         }}
       />
 
-      <AuthButton>
+      <FormButton>
         Create Driver
         {isLoading && <BtnLoader />}
-      </AuthButton>
+      </FormButton>
     </CreateDriverFormStyle>
   );
 };

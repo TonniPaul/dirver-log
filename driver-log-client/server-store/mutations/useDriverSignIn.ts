@@ -17,6 +17,7 @@ export interface IDriverSignInResponse {
   homeAddress: string;
   licenseExpiryDate: string;
   role: string;
+  token: string;
 }
 
 const driverSignIn = async (

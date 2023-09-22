@@ -1,6 +1,6 @@
 import getRemValue from '@/utils/getRemValue';
 import styled from 'styled-components';
-import { IAuthCardStyleProps } from '../cards/auth-card/auth-card.styles';
+import { IFormStyleProps } from '../cards/form/form.styles';
 
 export const FormInputStyles = styled.div`
   position: relative;
@@ -19,7 +19,7 @@ export const FormInputStyles = styled.div`
   }
 `;
 
-export const InputFormField = styled.div<IAuthCardStyleProps>`
+export const InputFormField = styled.div<IFormStyleProps>`
   position: relative;
 
   & > label {
@@ -40,7 +40,7 @@ export const InputFormField = styled.div<IAuthCardStyleProps>`
   }
 `;
 
-export const Input = styled.input<IAuthCardStyleProps>`
+export const Input = styled.input<IFormStyleProps>`
   border: 1px solid rgb(var(--color-primary), 0.7);
   outline: none;
   margin: 1rem 0;
@@ -61,7 +61,7 @@ export const Input = styled.input<IAuthCardStyleProps>`
   }
 `;
 
-export const InputFlexContainer = styled.div<IAuthCardStyleProps>`
+export const InputFlexContainer = styled.div<IFormStyleProps>`
   width: 100%;
   position: relative;
   display: flex;
