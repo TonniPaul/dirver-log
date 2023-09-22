@@ -1,5 +1,4 @@
 import { NextPageWithLayout } from './_app';
-import SignUpCard from '@/components/cards/auth-card/auth-card';
 import GeneralLayout from '@/layout/general-layout';
 import {
   AuthContainer,
@@ -8,10 +7,24 @@ import {
 } from '@/styles/auth-page-style';
 import Image from 'next/image';
 import { Root, Trigger, Content } from '@radix-ui/react-tabs';
+import { useRouter } from 'next/router';
+import { useStore } from '@/store';
+import routes from '@/lib/routes';
+import { useLayoutEffect } from 'react';
+import LoginForm from '@/components/cards/form/login-form';
 
 export const types = ['Driver', 'Admin'];
 
 const LoginPage: NextPageWithLayout = () => {
+  const router = useRouter();
+  const { admin, driver } = useStore();
+
+  useLayoutEffect(() => {
+    if (admin || driver) {
+      router.replace(routes.dashboard());
+    }
+  }, [admin, driver, router]);
+
   return (
     <>
       <AuthContainer>
@@ -34,11 +47,11 @@ const LoginPage: NextPageWithLayout = () => {
           </TabList>
 
           <Content value={types[0]}>
-            <SignUpCard type={types[0]} isLoginPage />
+            <LoginForm type={types[0]} />
           </Content>
 
           <Content value={types[1]}>
-            <SignUpCard type={types[1]} isLoginPage isAdmin />
+            <LoginForm type={types[1]} isAdmin />
           </Content>
         </Root>
       </AuthContainer>
