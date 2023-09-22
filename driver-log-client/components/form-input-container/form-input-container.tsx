@@ -8,11 +8,11 @@ import {
   Input,
 } from './form-input-container.styles';
 import SvgIcon from '../svg-icon/svg-icon';
-import { IAuthCardStyleProps } from '../cards/auth-card/auth-card.styles';
+import { IFormStyleProps } from '../cards/form/form.styles';
 
 // eslint-disable-line @typescript-eslint/no-explicit-any
 interface IFormInputProps
-  extends IAuthCardStyleProps,
+  extends IFormStyleProps,
     InputHTMLAttributes<HTMLInputElement> {
   htmlFor: string;
   label: string;
