@@ -1,5 +1,6 @@
 import { NextPageWithLayout } from './_app';
 import SignUpForm from '@/components/cards/form/sign-up-form';
+import Loader from '@/components/loader/loader';
 import GeneralLayout from '@/layout/general-layout';
 import routes from '@/lib/routes';
 import { useStore } from '@/store';
@@ -19,15 +20,19 @@ const SignUpPage: NextPageWithLayout = () => {
     if (admin || driver) {
       router.replace(routes.dashboard());
     }
-  }, []);
+  }, [admin, driver, router]);
   return (
     <>
-      <AuthContainer>
-        <AuthPageImageContainer>
-          <Image src="/assets/sn.svg" alt="sign-up-form-illustration" fill />
-        </AuthPageImageContainer>
-        <SignUpForm />
-      </AuthContainer>
+      {admin || driver ? (
+        <Loader />
+      ) : (
+        <AuthContainer>
+          <AuthPageImageContainer>
+            <Image src="/assets/sn.svg" alt="sign-up-form-illustration" fill />
+          </AuthPageImageContainer>
+          <SignUpForm />
+        </AuthContainer>
+      )}
     </>
   );
 };

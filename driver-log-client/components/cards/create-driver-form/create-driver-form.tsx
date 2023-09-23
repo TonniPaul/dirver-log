@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import useCreateDriver, {
   ICreateDriverProps,
 } from '@/server-store/mutations/useCreateDriver';
-import BtnLoader from '@/components/loader/loader';
+import BtnLoader from '@/components/btn-loaders/loader';
 import { FormButton } from '../form/form.styles';
 
 const defaultValues: ICreateDriverProps = {

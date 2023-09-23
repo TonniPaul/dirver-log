@@ -1,46 +1,21 @@
-import styled, { keyframes } from 'styled-components';
+import SvgIcon from '../svg-icon/svg-icon';
+import { InfiniteRotate, LoaderContainer } from './loader.styles';
 
-// Keyframes for animation
-const bounceDelay = keyframes`
-  0%, 80%, 100% {
-    transform: scale(0);
-  }
-  40% {
-    transform: scale(1.0);
-  }
-`;
-
-// Styled components
-const SpinnerContainer = styled.div`
-  width: 70px;
-  text-align: center;
-`;
-
-const Bounce = styled.div`
-  width: 10px;
-  height: 10px;
-  background-color: currentColor;
-  border-radius: 100%;
-  display: inline-block;
-  animation: ${bounceDelay} 1.4s infinite ease-in-out both;
-
-  &:nth-child(2) {
-    animation-delay: -0.32s;
-  }
-
-  &:nth-child(3) {
-    animation-delay: -0.16s;
-  }
-`;
-
-const BtnLoader = () => {
+const Loader = () => {
   return (
-    <SpinnerContainer>
-      <Bounce></Bounce>
-      <Bounce></Bounce>
-      <Bounce></Bounce>
-    </SpinnerContainer>
+    <LoaderContainer>
+      <div>
+        <InfiniteRotate>
+          <SvgIcon name="driver" />
+        </InfiniteRotate>
+        <h1>Driver Log</h1>
+        <p>
+          Efficiently Track and Manage Your Driver Logs with Driver Log -
+          Simplify Compliance, Maximize Efficiency!
+        </p>
+      </div>
+    </LoaderContainer>
   );
 };
 
-export default BtnLoader;
+export default Loader;

@@ -44,7 +44,7 @@ const Header = () => {
   };
 
   return (
-    <HeaderWrapper>
+    <HeaderWrapper onClick={() => setIsActive(false)}>
       <nav>
         <Logo />
         <NavLinksContainer active={isActive}>

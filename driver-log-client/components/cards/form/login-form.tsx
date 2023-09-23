@@ -17,7 +17,7 @@ import useSignIn, { ISignInProps } from '@/server-store/mutations/useSignIn';
 import useDriverSignIn from '@/server-store/mutations/useDriverSignIn';
 import { types } from '@/pages/login';
 import { useStore } from '@/store';
-import BtnLoader from '@/components/loader/loader';
+import BtnLoader from '@/components/btn-loaders/loader';
 import { useState } from 'react';
 
 export interface ILoginFormProp extends IFormStyleProps {
@@ -38,7 +38,7 @@ const LoginForm = ({ type, isAdmin }: ILoginFormProp) => {
   const { mutate: adminSignIn, isLoading: loadingAdmin } = useSignIn();
   const { mutate: driverSignIn, isLoading: loadingDriver } = useDriverSignIn();
 
-  const { handleSubmit, control } = useForm<ISignInProps>({
+  const { handleSubmit, control, reset } = useForm<ISignInProps>({
     defaultValues,
   });
 
@@ -52,7 +52,8 @@ const LoginForm = ({ type, isAdmin }: ILoginFormProp) => {
       return driverSignIn(payload, {
         onSuccess: (data) => {
           setDriver(data);
-          router.replace(routes.dashboard());
+          router.push(routes.dashboard());
+          reset();
         },
         // eslint-disable-next-line  @typescript-eslint/no-explicit-any
         onError: (data: any) => {
@@ -64,7 +65,8 @@ const LoginForm = ({ type, isAdmin }: ILoginFormProp) => {
     adminSignIn(payload, {
       onSuccess: (data) => {
         setAdmin(data);
-        router.replace(routes.dashboard());
+        router.push(routes.dashboard());
+        reset();
       },
       // eslint-disable-next-line  @typescript-eslint/no-explicit-any
       onError: (data: any) => {

@@ -15,7 +15,7 @@ import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import FormInputContainer from '@/components/form-input-container/form-input-container';
 import { isValidEmail, isValidPhoneNumber } from '@/utils/validators';
-import BtnLoader from '@/components/loader/loader';
+import BtnLoader from '@/components/btn-loaders/loader';
 
 export interface ISignUpFormSchema extends ICreateProfileProps {
   confirmPassword: string;
