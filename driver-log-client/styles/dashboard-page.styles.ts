@@ -23,6 +23,7 @@ export const SidebarContainer = styled.div`
   padding-left: 1rem;
   text-align: center;
   box-shadow: var(--box-shadow);
+  z-index: 1;
 
   @media screen and (min-width: 62.5em) {
     display: block;
@@ -108,13 +109,9 @@ export const DashboardMobileSignOutMenu = styled.div`
   }
 `;
 
-export const DashboardContentContainer = styled.div`
-  flex: 1;
-`;
-
 export const DashboardHeaderText = styled.p`
   font-weight: 700;
-  font-size: ${getRemValue(20)};
+  font-size: ${getRemValue(13)};
 `;
 
 export const RightSidebar = styled.div`
@@ -125,6 +122,7 @@ export const RightSidebar = styled.div`
 
 export const DashboardContent = styled.div`
   flex: 1;
+  min-height: calc(100vh);
 
   & > div {
     padding: 2rem;
@@ -140,4 +138,47 @@ export const DashboardNav = styled.nav`
   flex: 1;
   background-color: rgb(var(--color-white));
   box-shadow: var(--box-shadow);
+`;
+
+export const NavProfileContainer = styled.button`
+  display: flex;
+  align-items: center;
+  width: max-content;
+  gap: ${getRemValue(10)};
+  cursor: pointer;
+  color: inherit;
+  text-align: start;
+  line-height: 0.8;
+
+  & > div > p {
+    font-weight: 600;
+    font-size: ${getRemValue(13)};
+  }
+
+  & > div > small {
+    opacity: 0.8;
+    font-size: ${getRemValue(11)};
+    text-transform: capitalize;
+  }
+
+  @media screen and (max-width: 62.5em) {
+    display: none;
+  }
+`;
+
+export const HideOnDesktopSpan = styled.span`
+  font-weight: 600;
+
+  @media screen and (min-width: 62.5em) {
+    display: none;
+  }
+`;
+
+export const ProfileImageContainer = styled.div`
+  background-color: rgb(var(--color-primary), 0.4);
+  border-radius: 50%;
+
+  & > img {
+    object-fit: contain;
+  }
 `;

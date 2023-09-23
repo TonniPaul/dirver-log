@@ -12,6 +12,7 @@ export interface ICreateDriverProps {
   licenseExpiryDate: string;
   password: string;
   password_confirmation: string;
+  admin: string;
 }
 
 export interface ICreateDriversResponse {}

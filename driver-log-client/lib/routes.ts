@@ -5,9 +5,9 @@ const login = () => '/login';
 const signUp = () => '/sign-up';
 
 const routes = {
-   login,
-   signUp,
-   dashboard
-}
+  login,
+  signUp,
+  dashboard,
+};
 
 export default routes;

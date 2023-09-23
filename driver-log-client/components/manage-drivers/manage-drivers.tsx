@@ -1,3 +1,4 @@
+'use client';
 import Button from '../button/button';
 import CreateDriverForm from '../cards/create-driver-form/create-driver-form';
 import Modal from '../modal/modal';

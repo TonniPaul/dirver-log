@@ -10,12 +10,9 @@ export interface ISignInResponse {
   _id: string;
   name: string;
   email: string;
-  password: string;
   contactNo: string;
   role: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
+  token: string;
 }
 
 const signIn = async (data: ISignInProps): Promise<ISignInResponse> => {

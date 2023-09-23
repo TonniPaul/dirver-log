@@ -1,21 +1,38 @@
 import { NextPageWithLayout } from './_app';
-import SignUpCard from '@/components/cards/auth-card/auth-card';
+import SignUpForm from '@/components/cards/form/sign-up-form';
+import Loader from '@/components/loader/loader';
 import GeneralLayout from '@/layout/general-layout';
+import routes from '@/lib/routes';
+import { useStore } from '@/store';
 import {
   AuthContainer,
   AuthPageImageContainer,
 } from '@/styles/auth-page-style';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { useLayoutEffect } from 'react';
 
 const SignUpPage: NextPageWithLayout = () => {
+  const router = useRouter();
+  const { admin, driver } = useStore();
+
+  useLayoutEffect(() => {
+    if (admin || driver) {
+      router.replace(routes.dashboard());
+    }
+  }, [admin, driver, router]);
   return (
     <>
-      <AuthContainer>
-        <AuthPageImageContainer>
-          <Image src="/assets/sn.svg" alt="sign-up-form-illustration" fill />
-        </AuthPageImageContainer>
-        <SignUpCard type="" />
-      </AuthContainer>
+      {admin || driver ? (
+        <Loader />
+      ) : (
+        <AuthContainer>
+          <AuthPageImageContainer>
+            <Image src="/assets/sn.svg" alt="sign-up-form-illustration" fill />
+          </AuthPageImageContainer>
+          <SignUpForm />
+        </AuthContainer>
+      )}
     </>
   );
 };

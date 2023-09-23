@@ -5,6 +5,7 @@ import {
   HeroWrapper,
 } from './hero.styles';
 import LinkButton from '../button/link-button';
+import routes from '@/lib/routes';
 
 const Hero = () => {
   return (
@@ -15,7 +16,7 @@ const Hero = () => {
           Efficiently Track and Manage Your Driver Logs with Driver Log -
           Simplify Compliance, Maximize Efficiency!
         </p>
-        <LinkButton href="/sign-up" isBlock primary>
+        <LinkButton href={routes.signUp()} isBlock primary>
           Get Started
         </LinkButton>
       </HeroDescriptionContainer>

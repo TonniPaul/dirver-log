@@ -1,13 +1,15 @@
+'use client';
 import {
   DashboardContainer,
-  DashboardContentContainer,
-  DashboardHeaderText,
   SidebarContainer,
   SidebarItems,
   LogoutButton,
   SidebarMobileMenu,
   DashboardNav,
   DashboardContent,
+  NavProfileContainer,
+  ProfileImageContainer,
+  HideOnDesktopSpan,
 } from '@/styles/dashboard-page.styles';
 import dashboardItems from '../public/json/dashboard-items.json';
 import { useLayoutEffect, useState } from 'react';
@@ -20,19 +22,31 @@ import Popover from '@/components/popover/popover';
 import ManageDrivers from '@/components/manage-drivers/manage-drivers';
 import { useRouter } from 'next/router';
 import { useStore } from '@/store';
+import routes from '@/lib/routes';
+import Image from 'next/image';
+import DashboardComponent from '@/components/dashboard-component/dashboard-component';
 
 const Dashboard = () => {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
-  const [activePageHeader, setActivePageHeader] = useState(
-    dashboardItems[0].description
-  );
 
-  const isDashboard = activePageHeader === dashboardItems[0].description;
-  const isManageDriver = activePageHeader === dashboardItems[1].description;
-  const isReports = activePageHeader === dashboardItems[2].description;
-  const isProfile = activePageHeader === dashboardItems[3].description;
   const router = useRouter();
   const { admin, clearAdmin, driver, clearDriver } = useStore();
+
+  const filteredDashboardItems = !admin
+    ? dashboardItems.filter(
+        ({ description }) =>
+          description !== 'Manage Drivers' && description !== 'Reports'
+      )
+    : dashboardItems;
+
+  const profileIndex = filteredDashboardItems.findIndex(
+    (p) => p.description === 'Profile'
+  );
+
+  const isDashboard = activeTabIndex === 0;
+  const isManageDriver = activeTabIndex === 1;
+  const isReports = activeTabIndex === 2;
+  const isProfile = activeTabIndex === profileIndex;
 
   useLayoutEffect(() => {
     if (admin) {
@@ -43,9 +57,9 @@ const Dashboard = () => {
     }
 
     if (!admin && !driver) {
-      router.replace('/log-in');
+      router.replace(routes.login());
     }
-  }, [admin, driver, router]);
+  }, [admin, driver, router, clearAdmin, clearDriver]);
 
   return (
     <>
@@ -59,13 +73,12 @@ const Dashboard = () => {
         <SidebarContainer className={montserrat.className}>
           <Logo isPrimary />
           <SidebarItems>
-            {dashboardItems.map(({ icon, description }, index) => {
+            {filteredDashboardItems.map(({ icon, description }, index) => {
               return (
                 <li
                   key={index}
                   onClick={() => {
                     setActiveTabIndex(index);
-                    setActivePageHeader(description);
                   }}
                 >
                   <SidebarItemCard
@@ -98,22 +111,36 @@ const Dashboard = () => {
 
         <DashboardContent>
           <DashboardNav>
-            <DashboardHeaderText>
-              {isProfile && 'Company'} {activePageHeader} {admin && admin.name}{' '}
-              {driver && driver.firstName}
-            </DashboardHeaderText>
+            <p>
+              Welcome{' '}
+              <HideOnDesktopSpan>
+                {driver ? driver.firstName : admin?.name}
+              </HideOnDesktopSpan>
+            </p>
+            <NavProfileContainer
+              onClick={() => setActiveTabIndex(profileIndex)}
+            >
+              <ProfileImageContainer>
+                <Image
+                  src="/assets/user.svg"
+                  alt="user-icon"
+                  width={30}
+                  height={30}
+                />
+              </ProfileImageContainer>
+              <div>
+                <p>{driver ? driver.firstName : admin?.name}</p>
+                <small>Role: {driver ? driver.role : admin?.role}</small>
+              </div>
+            </NavProfileContainer>
           </DashboardNav>
 
           <div>
-            {isDashboard && (
-              <DashboardContentContainer>
-                Dashboard Content
-              </DashboardContentContainer>
-            )}
+            {isDashboard && <DashboardComponent />}
 
-            {isManageDriver && <ManageDrivers />}
+            {isManageDriver && admin && <ManageDrivers />}
 
-            {isReports && <div>Report Content</div>}
+            {isReports && admin && <div>Report Content</div>}
 
             {isProfile && <div>Profile Content</div>}
           </div>

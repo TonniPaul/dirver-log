@@ -87,7 +87,8 @@ export const NavLinkButton = styled.div`
     gap: 1rem;
   }
 
-  & > a {
+  & > a,
+  & > button {
     width: ${getRemValue(150)};
 
     @media screen and (max-width: 56.25em) {

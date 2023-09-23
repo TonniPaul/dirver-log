@@ -2,9 +2,9 @@ import { api } from '../queries/utils';
 import { useMutation } from '@tanstack/react-query';
 
 export interface ICreateProfileProps {
-  companyName: string;
+  name: string;
   email: string;
-  companyContactNo: string;
+  contactNo: string;
   password: string;
 }
 
