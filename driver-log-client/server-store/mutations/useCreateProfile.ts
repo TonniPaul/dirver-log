@@ -9,13 +9,11 @@ export interface ICreateProfileProps {
 }
 
 interface ICreateProfileResponse {
-  companyContactNo: string;
+  contactNo: string;
   email: string;
-  companyName: string;
-  createdAt: Date;
-  password: string;
+  name: string;
   role: string;
-  updatedAt: Date;
+  token: string;
 }
 
 const createCompanyProfile = async (
