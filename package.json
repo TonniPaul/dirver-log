@@ -1,0 +1,21 @@
+{
+    "name": "driver-log",
+    "version": "1.0.0",
+    "description": "Driver log app",
+    "main": "server.js",
+    "scripts": {
+        "start": "concurrently \"npm run server\" \"npm run client\"",
+        "server": "nodemon backend/server.js",
+        "client": "cd driver-log-client && npm run dev",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "concurrently \"npm run server\" \"npm run client\""
+    },
+    "keywords": [
+        "Driver"
+    ],
+    "license": "MIT",
+    "devDependencies": {
+        "concurrently": "^8.2.1",
+        "nodemon": "^2.0.22"
+    }
+}
