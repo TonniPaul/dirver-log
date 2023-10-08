@@ -22,14 +22,17 @@ const getDrivers = asyncHandler(async (req, res) => {
     let query = {};
     query.admin = req.user.id;
     try {
-        const drivers = await Driver.find(query)
+        const drivers = await Driver.find(query).select('-password')
         .populate('admin');
-        res.json(drivers);
-      } catch (error) {
-        res.status(404);
-        throw new Error('Drivers not found');
-      }
-    });
+        res.json({
+            drivers,
+            count: drivers.length
+        });
+    } catch (error) {
+    res.status(404);
+    throw new Error('Drivers not found');
+    }
+});
 
 const getDriverProfile = asyncHandler(async (req, res) => {
     try {
@@ -46,7 +49,7 @@ const getDriverProfile = asyncHandler(async (req, res) => {
         } = await Driver.findById(req.user.id);
 
         if (!driver) {
-          return res.status(404);
+          res.status(404);
           throw new Error('Driver not found');
         }
         res.json(driver);
@@ -66,7 +69,6 @@ const createDriver = asyncHandler(async (req, res) => {
         homeAddress,
         licenseExpiryDate,
         password,
-        password_confirmation
     } = req.body;
     let errors = [];
     if (!firstName) {
@@ -99,21 +101,10 @@ const createDriver = asyncHandler(async (req, res) => {
     if (!password) {
         errors.push({ password: "required" });
     }
-    if (!password_confirmation) {
-        errors.push({
-            password_confirmation: "required",
-        });
-    }
-    if (password !== password_confirmation) {
-        errors.push({ password: "passwords don't match" });
-    }
-    if (errors.length > 0) {
-        return res.status(422).json({ errors: errors });
-    }
+    
     const existingDriver = await Driver.findOne({ email: email });
         if (existingDriver) {
-            res.status(400);
-            throw new Error('Email already exists');
+            res.status(400).json({ message: 'Email already exists' });
         }
 
     try {
@@ -170,9 +161,7 @@ const updateDriver = asyncHandler(async (req, res) => {
         contactNumber: updatedDriver.contactNumber,
         email: updatedDriver.email,
         homeAddress: updatedDriver.homeAddress,
-        licenseExpiryDate: updatedDriver.licenseExpiryDate,
-        password: updatedDriver.password,
-        password_confirmation: updatedDriver.password_confirmation
+        licenseExpiryDate: updatedDriver.licenseExpiryDate
       });
     } else {
       res.status(404);

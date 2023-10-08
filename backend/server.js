@@ -36,7 +36,7 @@ app.use(
 app.use(express.json({ extended: false }));
 
 app.get('/', (req, res) =>
-  res.send('<h1>Welcome to the DriverLog Server App</h1>')
+  res.send('<h1>DriverLog Server</h1>')
 );
 
 // use Routes

@@ -28,12 +28,11 @@ const emailNotification = async (userEmail, triplog, req) => {
                 data : [
                     {
                         item : `<p>Triplog created by ${req.user.firstName + ' ' + req.user.lastName}</p>
-                                <p>DateTime: ${triplog.logDate}</p>
-                                <p>Origin: ${triplog.origin}</p>
-                                <p>Destination: ${triplog.destination}</p>
+                                <p>DateTime: ${triplog.updatedAt}</p>
+                                <p>Origin: ${triplog.originAddress}</p>
+                                <p>Destination: ${triplog.destinationAddress}</p>
                                 <p>Distance: ${triplog.distance}</p>
-                                <p>Total Mileage: ${triplog.totalMileage}</p>
-                                <p>Vehicle: ${triplog.vehicle.make} ${triplog.vehicle.model} ${triplog.vehicle.licensePlate}</p>
+                                <p>Vehicle: ${triplog.vehicle}</p>
                                 <p>Purpose: ${triplog.purpose}</p>
                                 <p>Remarks: ${triplog.comments}</p>`,
                         description: "Triplog",
@@ -55,7 +54,6 @@ const emailNotification = async (userEmail, triplog, req) => {
 
     try {
         await transporter.sendMail(message);
-        console.log(`Email sent to ${userEmail}`);
     } catch(err) {
         console.error(`Error sending email to ${userEmail}:`, err);
         throw new Error('Internal server error');

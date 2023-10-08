@@ -22,9 +22,9 @@ const signinDriver = asyncHandler(async (req, res) => {
       if (!isMatch) {
         throw new Error('Incorrect Email or Password');
       } else {
-        createJWT(res, driver.email, driver._id, driver.role);
+        const token = createJWT(res, driver.email, driver._id, driver.role);
 
-        return res.status(200).json({
+        res.status(200).json({
           _id: driver._id,
           firstName: driver.firstName,
           lastName: driver.lastName,
@@ -35,6 +35,7 @@ const signinDriver = asyncHandler(async (req, res) => {
           homeAddress: driver.homeAddress,
           licenseExpiryDate: driver.licenseExpiryDate,
           role: driver.role,
+          token: token,
         });
       }
     }
@@ -43,7 +44,7 @@ const signinDriver = asyncHandler(async (req, res) => {
   }
 });
 
-// Logout driver
+// Logout user
 const logout = asyncHandler(async (req, res) => {
   try {
     res.cookie('token', '', {
@@ -75,9 +76,15 @@ const signinAdmin = asyncHandler(async (req, res) => {
       if (!isMatch) {
         throw new Error('Incorrect Email or Password');
       } else {
-        createJWT(res, admin.email, admin._id, admin.role);
-
-        return res.status(200).json(admin);
+        const token = createJWT(res, admin.email, admin._id, admin.role);
+        res.status(200).json({
+          _id: admin._id,
+          name: admin.name,
+          email: admin.email,
+          contactNo: admin.contactNo,
+          role: admin.role,
+          token: token,
+        });
       }
     }
   } catch (err) {

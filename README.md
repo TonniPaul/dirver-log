@@ -7,6 +7,9 @@ DriverLog is a web application designed to streamline and simplify driver log ma
 For first time users
 
 - Clone this repo onto your machine.
+- Run `npm install` to install all dependencies.
+- Run `npm run dev` to start the development server.
+- Navigate to `localhost:3000` on your browser to view the app.
 
 ## Contribution guide
 
