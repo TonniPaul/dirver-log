@@ -122,7 +122,8 @@ export const RightSidebar = styled.div`
 
 export const DashboardContent = styled.div`
   flex: 1;
-  min-height: calc(100vh);
+  height: calc(100vh);
+  overflow-y: scroll;
 
   & > div {
     padding: 2rem;
@@ -138,6 +139,9 @@ export const DashboardNav = styled.nav`
   flex: 1;
   background-color: rgb(var(--color-white));
   box-shadow: var(--box-shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1;
 `;
 
 export const NavProfileContainer = styled.button`

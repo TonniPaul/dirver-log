@@ -6,7 +6,11 @@ import useCreateDriver, {
 } from '@/server-store/mutations/useCreateDriver';
 import BtnLoader from '@/components/btn-loaders/loader';
 import { FormButton } from '../form/form.styles';
+import { toast } from 'react-toastify';
 
+interface ICreateNewDriverProps {
+  closeModal?: () => void;
+}
 const defaultValues: ICreateDriverProps = {
   firstName: '',
   lastName: '',
@@ -17,12 +21,10 @@ const defaultValues: ICreateDriverProps = {
   homeAddress: '',
   licenseExpiryDate: '',
   password: '',
-  password_confirmation: '',
-  admin: '',
 };
 
-const CreateDriverForm = () => {
-  const { handleSubmit, control } = useForm<ICreateDriverProps>({
+const CreateDriverForm = ({ closeModal }: ICreateNewDriverProps) => {
+  const { handleSubmit, control, watch } = useForm<ICreateDriverProps>({
     defaultValues,
   });
 
@@ -30,11 +32,17 @@ const CreateDriverForm = () => {
 
   const onSubmit: SubmitHandler<ICreateDriverProps> = async (data) => {
     createDriver(data, {
-      onSuccess: (data) => {
-        console.log(data);
+      onSuccess: () => {
+        toast.success('driver created successfully');
+        closeModal?.();
+      },
+      // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+      onError: (data: any) => {
+        toast.error(data.message);
       },
     });
   };
+  const watchedPassword = watch('password');
 
   return (
     <CreateDriverFormStyle onSubmit={handleSubmit(onSubmit)}>
@@ -101,8 +109,8 @@ const CreateDriverForm = () => {
       />
 
       <FormInputContainer
-        htmlFor="licenseNumber"
-        id="first-name"
+        htmlFor="license-number"
+        id="license-number"
         type="text"
         label="License Number"
         placeholder="Enter your License number"
@@ -130,8 +138,8 @@ const CreateDriverForm = () => {
       />
 
       <FormInputContainer
-        htmlFor="homeAddress"
-        id="first-name"
+        htmlFor="home-address"
+        id="home-address"
         label="Address"
         placeholder="Enter your address"
         controller={{
@@ -147,12 +155,19 @@ const CreateDriverForm = () => {
         htmlFor="expiry-date"
         id="expiry-date"
         label="License expiry date"
+        type="number"
+        min={new Date().getFullYear()}
         placeholder="Enter your license expiry date"
         controller={{
           control,
           name: 'licenseExpiryDate',
           rules: {
             required: 'Please enter your license expiry date',
+            validate: {
+              isValid: (value) =>
+                value >= new Date().getFullYear() ||
+                `Value cannot must be greater or equal to ${new Date().getFullYear()}`,
+            },
           },
         }}
       />
@@ -168,6 +183,22 @@ const CreateDriverForm = () => {
           name: 'password',
           rules: {
             required: 'Please enter a password',
+            validate: {
+              hasUppercase: (value) =>
+                /[A-Z]/.test(value) ||
+                'Password must contain at least one uppercase letter',
+              hasLowercase: (value) =>
+                /[a-z]/.test(value) ||
+                'Password must contain at least one lowercase letter',
+              hasSpecialChar: (value) =>
+                /[\W_]/.test(value) ||
+                'Password must contain at least one special character',
+              hasNumber: (value) =>
+                /\d/.test(value) || 'Password must contain at least one number',
+              hasLength: (value) =>
+                value.length >= 6 ||
+                'Password must be at least 6 characters long',
+            },
           },
         }}
       />
@@ -183,13 +214,16 @@ const CreateDriverForm = () => {
           name: 'confirmPassword',
           rules: {
             required: 'please confirm password',
+            validate: {
+              isValid: (value) =>
+                watchedPassword === value || 'Password mismatch',
+            },
           },
         }}
       />
 
-      <FormButton>
-        Create Driver
-        {isLoading && <BtnLoader />}
+      <FormButton disabled={isLoading}>
+        {isLoading ? <BtnLoader /> : 'Create Driver'}
       </FormButton>
     </CreateDriverFormStyle>
   );

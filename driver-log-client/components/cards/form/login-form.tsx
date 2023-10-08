@@ -16,7 +16,7 @@ import FormInputContainer from '@/components/form-input-container/form-input-con
 import useSignIn, { ISignInProps } from '@/server-store/mutations/useSignIn';
 import useDriverSignIn from '@/server-store/mutations/useDriverSignIn';
 import { types } from '@/pages/login';
-import { useStore } from '@/store';
+import { useStore } from '@/client-store';
 import BtnLoader from '@/components/btn-loaders/loader';
 import { useState } from 'react';
 
@@ -51,13 +51,16 @@ const LoginForm = ({ type, isAdmin }: ILoginFormProp) => {
     if (type === types[0]) {
       return driverSignIn(payload, {
         onSuccess: (data) => {
-          setDriver(data);
+          setDriver({
+            ...data,
+            onTrip: false,
+          });
           router.push(routes.dashboard());
           reset();
         },
         // eslint-disable-next-line  @typescript-eslint/no-explicit-any
-        onError: (data: any) => {
-          setErrorMessage(data.response.data.message);
+        onError: (err: any) => {
+          setErrorMessage(err.response.data.message);
         },
       });
     }
