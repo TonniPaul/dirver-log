@@ -32,7 +32,7 @@ const emailNotification = async (userEmail, triplog, req) => {
                                 <p>Origin: ${triplog.originAddress}</p>
                                 <p>Destination: ${triplog.destinationAddress}</p>
                                 <p>Distance: ${triplog.distance}</p>
-                                <p>Vehicle: ${triplog.vehicle.make} ${triplog.vehicle.model} ${triplog.vehicle.licensePlate}</p>
+                                <p>Vehicle: ${triplog.vehicle}</p>
                                 <p>Purpose: ${triplog.purpose}</p>
                                 <p>Remarks: ${triplog.comments}</p>`,
                         description: "Triplog",
