@@ -10,16 +10,19 @@ export interface IDriverSliceType {
 export const driverSlice: StateCreator<IDriverSliceType> = (set) => ({
   driver: null,
   setDriver: (data) => {
-    // Set the driver data in state
     set({ driver: data });
-    // Assuming 'data.token' is the token received from the backend
-    const token = data.token;
-    // Set the token as a cookie
-    document.cookie = document.cookie = `driverToken=${token}; expires=${new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toUTCString()}; path=/`;
   },
   clearDriver: () => {
+    const tokenCookie = document.cookie.replace(
+      /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+      '$1'
+    );
+
+    // Log the current value of the 'token' cookie
+    console.log('Current token cookie value:', tokenCookie);
+
+    // Clear the 'token' cookie by setting it to an empty string and an expired date
+    document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     set({ driver: null });
-    // Clear the token cookie
-    document.cookie = document.cookie = 'deiverToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
   },
 });
