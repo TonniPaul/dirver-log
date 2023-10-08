@@ -1,3 +1,4 @@
+import ReactQueryKeys from '../keys';
 import { api } from '../queries/utils';
 import { useMutation } from '@tanstack/react-query';
 
@@ -25,7 +26,10 @@ const createCompanyProfile = async (
 };
 
 const useCreateProfile = () => {
-  return useMutation(createCompanyProfile);
+  return useMutation(
+    [ReactQueryKeys.CREATE_ADMIN_PROFILE],
+    createCompanyProfile
+  );
 };
 
 export default useCreateProfile;

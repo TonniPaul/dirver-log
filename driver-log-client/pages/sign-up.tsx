@@ -3,7 +3,7 @@ import SignUpForm from '@/components/cards/form/sign-up-form';
 import Loader from '@/components/loader/loader';
 import GeneralLayout from '@/layout/general-layout';
 import routes from '@/lib/routes';
-import { useStore } from '@/store';
+import { useStore } from '@/client-store';
 import {
   AuthContainer,
   AuthPageImageContainer,

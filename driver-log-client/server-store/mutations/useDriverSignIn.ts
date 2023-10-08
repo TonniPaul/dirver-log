@@ -1,3 +1,4 @@
+import ReactQueryKeys from '../keys';
 import { api } from '../queries/utils';
 import { useMutation } from '@tanstack/react-query';
 
@@ -18,6 +19,7 @@ export interface IDriverSignInResponse {
   licenseExpiryDate: string;
   role: string;
   token: string;
+  onTrip?: boolean;
 }
 
 const driverSignIn = async (
@@ -29,7 +31,7 @@ const driverSignIn = async (
 };
 
 const useDriverSignIn = () => {
-  return useMutation(driverSignIn);
+  return useMutation([ReactQueryKeys.DRIVER_SIGN_IN], driverSignIn);
 };
 
 export default useDriverSignIn;

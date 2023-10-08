@@ -10,7 +10,7 @@ import {
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import routes from '@/lib/routes';
-import { useStore } from '@/store';
+import { useStore } from '@/client-store';
 import Button from '../button/button';
 
 const navLinks = [
@@ -44,7 +44,7 @@ const Header = () => {
   };
 
   return (
-    <HeaderWrapper onClick={() => setIsActive(false)}>
+    <HeaderWrapper onClick={() => isActive && setIsActive(false)}>
       <nav>
         <Logo />
         <NavLinksContainer active={isActive}>

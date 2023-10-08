@@ -11,3 +11,7 @@ export const DashboardComponentWrapper = styled.div`
     flex-basis: 45%;
   }
 `;
+
+export const DashboardSectionWrapper = styled.section`
+  margin: 2rem 0;
+`;

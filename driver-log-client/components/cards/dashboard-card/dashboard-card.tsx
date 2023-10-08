@@ -16,7 +16,7 @@ const DashboardCard = ({
   return (
     <DashboardCardWrapper isCompleted={isCompleted} isUnassigned={isUnassigned}>
       <p>
-        {title} {title !== 'Drivers' && 'trips'}
+        {title} {title !== 'Drivers' && title !== 'Vehicles' && 'trips'}
       </p>
       <p>{count}</p>
     </DashboardCardWrapper>

@@ -52,6 +52,10 @@ button:disabled {
   opacity: 0.5;
 }
 
+label {
+  cursor: pointer;
+}
+
 img {
   z-index: -1;
 }

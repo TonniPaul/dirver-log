@@ -8,7 +8,7 @@ import {
 import Image from 'next/image';
 import { Root, Trigger, Content } from '@radix-ui/react-tabs';
 import { useRouter } from 'next/router';
-import { useStore } from '@/store';
+import { useStore } from '@/client-store';
 import routes from '@/lib/routes';
 import { useLayoutEffect } from 'react';
 import LoginForm from '@/components/cards/form/login-form';

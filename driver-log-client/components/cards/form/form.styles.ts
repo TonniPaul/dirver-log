@@ -10,6 +10,7 @@ export interface IFormStyleProps {
 export const FormContainer = styled.div<IFormStyleProps>`
   border: 2px solid rgb(var(--color-primary));
   padding: 2rem 3rem 4rem;
+  margin: auto;
   max-width: ${getRemValue(500)};
 
   & > h1 {

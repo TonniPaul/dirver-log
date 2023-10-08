@@ -1,3 +1,4 @@
+import ReactQueryKeys from '../keys';
 import { api } from '../queries/utils';
 import { useMutation } from '@tanstack/react-query';
 
@@ -22,7 +23,7 @@ const signIn = async (data: ISignInProps): Promise<ISignInResponse> => {
 };
 
 const useSignIn = () => {
-  return useMutation(signIn);
+  return useMutation([ReactQueryKeys.ADMIN_SIGN_IN], signIn);
 };
 
 export default useSignIn;
