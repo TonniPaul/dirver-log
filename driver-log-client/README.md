@@ -30,3 +30,7 @@ For first time users
 ## Note
 
 Read this [article](https://medium.com/swlh/writing-better-commit-messages-9b0b6ff60c67) to influence your commit message style
+
+## Author
+
+[Paul Oluwatoni Ariyo-Adeoye](https://github.com/tonnipaul)

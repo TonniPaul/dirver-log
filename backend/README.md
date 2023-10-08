@@ -27,7 +27,7 @@ This is a REST API for the DriverLog application. It is built using Node.js, Exp
 - POST: /api/auth/signin-driver - Sign in as a driver
 - POST: /api/auth/logout - Logout
 
-### DutySatus
+### DutyStatus
 
 - GET/POST: /api/dutystatus - Get all duty statuses / Create a new duty status
 - GET/PUT/DELETE: /api/dutystatus/:id - Get a duty status by id / Update a duty status by id / Delete a duty status by id
