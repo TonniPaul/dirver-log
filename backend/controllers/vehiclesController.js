@@ -2,14 +2,13 @@ const Vehicle = require('../models/Vehicle');
 const asyncHandler = require('express-async-handler');
 
 const getVehicles = asyncHandler(async (req, res) => {
-  await Vehicle.find()
-    .then((vehicles) => {
-      res.json(vehicles);
-    })
-    .catch((err) => {
-      res.status(404);
-      throw new Error('Vehicles not found');
-    });
+  try {
+    const vehicles = await Vehicle.find();
+    res.json(vehicles);
+  } catch (err) {
+    res.status(500);
+    throw new Error('Internal server error');
+  }
 });
 
 const getVehicle = asyncHandler(async (req, res) => {

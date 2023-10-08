@@ -37,6 +37,11 @@ const TripLogSchema = new mongoose.Schema(
       type: String,
       get: v => `${Math.floor(v)}(Km)`,
     },
+    status: {
+      type: String,
+      enum: ['ongoing', 'completed'],
+      default: 'ongoing'
+    }
 },
 {
   timestamps: true

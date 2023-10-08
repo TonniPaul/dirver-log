@@ -171,5 +171,3 @@ The API is used by the DriverLog application to store and retrieve data.
 - [Express.js](https://expressjs.com/)
 - [Node.js](https://nodejs.org/en/)
 - [Postman](https://www.postman.com/)
-
-

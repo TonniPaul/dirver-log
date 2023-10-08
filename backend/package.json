@@ -1,7 +1,7 @@
 {
   "name": "driverlogserver",
   "version": "1.0.0",
-  "description": "Driver log app backend api",
+  "description": "My driver log app backend",
   "main": "server.js",
   "scripts": {
     "test": "node server.js",
